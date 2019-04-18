@@ -18,7 +18,7 @@ namespace FlightSimulator.ViewModels
             {
                 string command = " set bla bla";
                 command = command + value;
-                command = "\r\n";//else the simulator wodnt do nothing
+                command = "\r\n";//else the simulator woudnt do nothing
                 
             }
         }
@@ -31,7 +31,7 @@ namespace FlightSimulator.ViewModels
             {
                 string command = " set bla bla";
                 command = command + value;
-                command = "\r\n";//else the simulator wodnt do nothing
+                command = "\r\n";//else the simulator woudnt do nothing
 
             }
         }
@@ -44,7 +44,7 @@ namespace FlightSimulator.ViewModels
             {
                 string command = " set bla bla";
                 command = command + value;
-                command = "\r\n";//else the simulator wodnt do nothing
+                command = "\r\n";//else the simulator woudnt do nothing
 
 
             }
