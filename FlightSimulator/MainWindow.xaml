@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="600">
     <Canvas>
         <Button x:Name="btn" Canvas.Left="50" Canvas.Top="50"
-                Width="Auto" Height="50" Click="Button_Click"
+                Width="Auto" Height="50" Click="Btn_Click" 
                 > Hello!!! </Button>
     </Canvas>
 </Window>

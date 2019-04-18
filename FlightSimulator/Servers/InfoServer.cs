@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using FlightSimulator.Model;
+using FlightSimulator.Model.Interface;
 using FlightSimulator.ViewModels;
 using System.Net.Sockets;
 
@@ -14,72 +16,87 @@ namespace FlightSimulator.Servers
     /// </summary>
     class InfoServer : IServer
     {
-        private TcpListener m_server;
-        private FlightBoardViewModel m_flightBoardVM;
+        private TcpListener server;
+        private FlightBoardViewModel flightBoardVM;
         private enum Variables { Lon = 0, Lat };
 
         public InfoServer(FlightBoardViewModel flightBoardVM)
         {
-            m_server = null;
-            m_flightBoardVM = flightBoardVM;
+            this.server = null;
+            this.flightBoardVM = flightBoardVM;
         }
 
         /// <summary>
         /// Establish a connection to a specific socket
         /// </summary>
         /// <param name="settings"> Holds the IP and port of the requested connection. </param>
-        public void Connect(ApplicationSettingsModel settings)
+        public void Connect(ISettingsModel settings)
         {
-            String IP = settings.FlightServerIP;
-            int port = settings.FlightInfoPort;
-            m_server = new TcpListener(System.Net.IPAddress.Parse(IP), port);
-            m_server.Start();
-
-            // Used to read the input from the flight simulator
-            Byte[] bytes = new byte[256];
-
-            while (true)
+            TcpClient client = null;
+            NetworkStream stream = null;
+            try
             {
-                TcpClient client = m_server.AcceptTcpClient();
-                NetworkStream stream = client.GetStream();
-                String msgReceived = null;
+                String IP = settings.FlightServerIP;
+                int port = settings.FlightInfoPort;
+                this.server = new TcpListener(System.Net.IPAddress.Parse(IP), port);
+                this.server.Start();
 
-                // Read the amount of actual bytes read
-                int amountOfBytes = stream.Read(bytes, 0, bytes.Length);
-                while (amountOfBytes != 0)
+                // Used to read the input from the flight simulator
+                Byte[] bytes = new byte[256];
+
+                while (true)
                 {
-                    msgReceived = System.Text.Encoding.ASCII.GetString(bytes, 0, amountOfBytes);
-                    String[] details = { "", "" };
+                    client = this.server.AcceptTcpClient();
+                    stream = client.GetStream();
+                    String dataReceived = null;
 
-                    // Processing the received input to receive only the latitude and longitude values
-                    this.RetrieveLonAndLat(ref msgReceived, ref details);
+                    // Read the data from the simulator
+                    int bytesRead = stream.Read(bytes, 0, bytes.Length);
+                    Console.WriteLine(bytes);
+                    while (bytesRead != 0)
+                    {
+                        dataReceived = System.Text.Encoding.ASCII.GetString(bytes, 0, bytesRead);
+                        String[] lonLatVals = { "", "" };
 
-                    // Send the new values to the flight board view model to display them
-                    if (details[(int)Variables.Lon] != "")
-                    {
-                        m_flightBoardVM.Lon = Double.Parse(details[(int)Variables.Lon]);
-                        m_flightBoardVM.NotifyPropertyChanged("Lon");
+                        // Processing the received input to receive only the latitude and longitude values
+                        this.RetrieveLonAndLat(ref dataReceived, ref lonLatVals);
+
+                        // Send the new values to the flight board view model to display them
+                        if (lonLatVals[(int)Variables.Lon] != "")
+                        {
+                            this.flightBoardVM.Lon = Double.Parse(lonLatVals[(int)Variables.Lon]);
+                        }
+                        if (lonLatVals[(int)Variables.Lat] != "")
+                        {
+                            this.flightBoardVM.Lat = Double.Parse(lonLatVals[(int)Variables.Lat]);
+                        }
+                        // Continue reading
+                        bytesRead = stream.Read(bytes, 0, bytes.Length);
                     }
-                    if (details[(int)Variables.Lat] != "")
-                    {
-                        m_flightBoardVM.Lat = Double.Parse(details[(int)Variables.Lat]);
-                        m_flightBoardVM.NotifyPropertyChanged("Lat");
-                    }
-                    amountOfBytes = stream.Read(bytes, 0, bytes.Length);
                 }
             }
-
+            catch(SocketException e)
+            {
+                Console.WriteLine("Socket Exception: ", e);
+            }
+            finally
+            {
+                stream.Close();
+                client.Close();
+                this.Close();
+                
+            }
         }
 
         /// <summary>
-        /// Processing an input from the flight simulator to extract the specific longitude and latitude values
-        /// and storing them in an array.
+        /// Process an input from the flight simulator to extract the specific longitude and latitude values
+        /// and store them in an array.
         /// </summary>
         /// <param name="received"> A string of raw data from the simulator. </param>
         /// <param name="details"> An array that stores the extracted values </param>
         private void RetrieveLonAndLat(ref String received, ref String[] details)
         {
-
+            // Lon is index 0. Lat is index 1
         }
 
         /// <summary>
@@ -87,7 +104,25 @@ namespace FlightSimulator.Servers
         /// </summary>
         public void Close()
         {
-            m_server.Stop();
+            this.server.Stop();
+        }
+
+        public static void Main(string[] args)
+        {
+            ISettingsModel settings = new ApplicationSettingsModel
+            {
+                FlightServerIP = "127.0.0.1",
+                FlightInfoPort = 5400
+            };
+            IServer s = new InfoServer(new FlightBoardViewModel());
+            Thread t = new Thread(delegate ()
+            {
+                s.Connect(settings);
+            });
+            t.Start();
+            t.Join();
+            Console.ReadKey();
         }
     }
 }
+ 

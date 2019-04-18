@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FlightSimulator.Model;
+using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.Servers
 {
@@ -16,7 +16,7 @@ namespace FlightSimulator.Servers
         /// Establish a connection to a specific socket
         /// </summary>
         /// <param name="settings"> Holds the IP and port of the requested connection. </param>
-        void Connect(ApplicationSettingsModel settings);
+        void Connect(ISettingsModel settings);
 
         /// <summary>
         /// Close the connection to the socket.
