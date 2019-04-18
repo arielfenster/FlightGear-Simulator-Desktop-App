@@ -23,7 +23,7 @@ namespace FlightSimulator.Views.Windows
         public Controls()
         {
             InitializeComponent();
-            this.DataContext = new ControlsViewModel();
+            DataContext = new ManualControlViewModel() ;
         }
     }
 }

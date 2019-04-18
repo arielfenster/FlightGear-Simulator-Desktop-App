@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.ViewModels
 {
-    class ControlsViewModel
+    class ManualControlViewModel : BaseNotify
 
     {
         /// <commands>
@@ -62,6 +62,5 @@ namespace FlightSimulator.ViewModels
 
             }
         }
-
     }
 }
