@@ -12,8 +12,8 @@ namespace FlightSimulator.Servers
 {
     class CommandClient : IServer
     {
-        private int port;
-        private string ip;
+     //   private int port;
+     //   private string ip;
         private IPEndPoint endPoint;
         private TcpClient tcpClient;
 
