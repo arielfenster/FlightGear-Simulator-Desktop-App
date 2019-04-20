@@ -9,7 +9,7 @@
     <Grid>
         <TextBox x:Name="CommandTextBox" HorizontalAlignment="Left" Height="356"
                              TextWrapping="Wrap" VerticalAlignment="Top" Width="776" BorderBrush="Blue"
-                             AcceptsReturn="True" Margin="10,10,0,0"/>
+                             AcceptsReturn="True" Margin="10,10,0,0" Background="{Binding BackGroundColor}"/>
 
         <Button Content="Ok" HorizontalAlignment="Left" Margin="257,387,0,0" FontSize="17" FontWeight="Bold" VerticalAlignment="Top" Width="76" Command="{Binding OkCommand}" RenderTransformOrigin="1.23,0.644">
             <Button.Background>
@@ -19,7 +19,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Clear" HorizontalAlignment="Left" Margin="396,387,0,0" FontSize="17" FontWeight="Bold" VerticalAlignment="Top" Width="76" Command="{Binding OkCommand}" RenderTransformOrigin="1.23,0.644">
+        <Button Content="Clear" HorizontalAlignment="Left" Margin="396,387,0,0" FontSize="17" FontWeight="Bold" VerticalAlignment="Top" Width="76" Command="{Binding ClearCommand}" RenderTransformOrigin="1.23,0.644">
             <Button.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="Lavender" Offset="1"/>

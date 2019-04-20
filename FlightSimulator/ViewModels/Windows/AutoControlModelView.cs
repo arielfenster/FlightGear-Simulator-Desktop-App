@@ -19,11 +19,33 @@ namespace FlightSimulator.ViewModels.Windows
         private string line;
         private ICommand m_OkCommand;
         private ICommand m_ClearCommand;
+        private CommandSettingsReader m_reader;
+
+   
 
         public AutoControlModelView()
         {
             this.line = "";
+            this.m_reader = new CommandSettingsReader();
+        }
 
+        /// <summary>
+        /// Color propety- change the screen coler by our logic
+        /// </summary>
+        public string Color
+        {
+            get
+            {
+                if (this.line != "")
+                {
+                    return ("RED");
+                }
+                else
+                {
+                    return ("White");
+                }
+
+            }
         }
 
         /// <summary>
@@ -34,6 +56,11 @@ namespace FlightSimulator.ViewModels.Windows
             set
             {
                 line = value;
+            }
+            get
+            {
+                NotifyPropertyChanged("Color");
+                return this.line;
             }
         }
 
@@ -50,7 +77,9 @@ namespace FlightSimulator.ViewModels.Windows
         }
         public void OkClick()
         {
-            //sent the line TODO 
+
+            m_reader.AnalyzeAndSend(line);
+
         }
 
         /// <summary>
@@ -61,7 +90,7 @@ namespace FlightSimulator.ViewModels.Windows
         {
             get
             {
-                return this.m_OkCommand ?? (m_OkCommand = new CommandHandler(() => ClearClick()));
+                return this.m_ClearCommand ?? (m_OkCommand = new CommandHandler(() => ClearClick()));
             }
         }
 
