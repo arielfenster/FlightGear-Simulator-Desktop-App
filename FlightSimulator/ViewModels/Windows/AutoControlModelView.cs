@@ -19,14 +19,14 @@ namespace FlightSimulator.ViewModels.Windows
         private string line;
         private ICommand m_OkCommand;
         private ICommand m_ClearCommand;
-        private CommandSettingsReader m_reader;
+        private CommandReader m_reader;
 
    
 
         public AutoControlModelView()
         {
             this.line = "";
-            this.m_reader = new CommandSettingsReader();
+            this.m_reader = new CommandReader();
         }
 
         /// <summary>

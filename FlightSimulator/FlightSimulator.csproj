@@ -89,7 +89,7 @@
     </Compile>
     <Compile Include="Model\ApplicationSettingsModel.cs" />
     <Compile Include="Model\CommandHandler.cs" />
-    <Compile Include="Model\CommandSettingsReader.cs" />
+    <Compile Include="Model\CommandReader.cs" />
     <Compile Include="Model\EventArgs\VirtualJoystickEventArgs.cs" />
     <Compile Include="Model\Interface\ISettingsModel.cs" />
     <Compile Include="Servers\CommandClient.cs" />

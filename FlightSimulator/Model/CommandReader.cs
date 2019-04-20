@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.Model
 {
-    class CommandSettingsReader
+    class CommandReader
     {
 
         ///<summary>
@@ -19,7 +19,7 @@ namespace FlightSimulator.Model
 
         CommandClient m_clientChannel;
         
-        public CommandSettingsReader()
+        public CommandReader()
         {
             m_clientChannel = new CommandClient();
         }
