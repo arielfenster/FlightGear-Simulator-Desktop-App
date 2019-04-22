@@ -7,8 +7,33 @@
              xmlns:local="clr-namespace:FlightSimulator.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush>
+                        <GradientStop Color="LightBlue" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.5"/>
+                        <GradientStop Color="LightBlue" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <Grid>
-        <Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.Resources>
                 <Style TargetType="TextBlock" x:Key="LabelStyle">
                     <Setter Property="FontSize" Value="20" />
                     <Setter Property="HorizontalAlignment" Value="Center" />
@@ -27,9 +52,15 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock Style="{StaticResource LabelStyle}" LayoutTransform="{StaticResource rotate}" VerticalAlignment="Center">Lon</TextBlock>
-            <d3:ChartPlotter Grid.Row="0" Grid.Column="1" LegendVisible="False" Name="plotter">
-            </d3:ChartPlotter>
+            <d3:ChartPlotter Grid.Row="0" Grid.Column="1" LegendVisible="False" Name="plotter"></d3:ChartPlotter>
             <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center">Lat</TextBlock>
-        
+        </Grid>
+
+        <Viewbox Grid.Row="0" Grid.Column="0">
+            <Grid>
+                <Button Name="Connect" Content="Connect" Command="{Binding ConnectCommand}" Margin="100,10,200,10" />
+                <Button Name="Settings" Content="Settings" Command="{Binding SettingsCommand}" Margin="200,10,100,10" />
+            </Grid>
+        </Viewbox>
     </Grid>
 </UserControl>

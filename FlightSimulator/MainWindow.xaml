@@ -6,9 +6,5 @@
         xmlns:local="clr-namespace:FlightSimulator"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="600">
-    <Canvas>
-        <Button x:Name="btn" Canvas.Left="50" Canvas.Top="50"
-                Width="Auto" Height="50" Click="Btn_Click" 
-                > Hello!!! </Button>
-    </Canvas>
+    <Button Content="Click me" Click="Button_Click" />
 </Window>

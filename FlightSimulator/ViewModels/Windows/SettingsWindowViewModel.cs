@@ -49,8 +49,6 @@ namespace FlightSimulator.ViewModels.Windows
             }
         }
 
-     
-
         public void SaveSettings()
         {
             model.SaveSettings();
@@ -62,18 +60,19 @@ namespace FlightSimulator.ViewModels.Windows
         }
 
         #region Commands
-        #region ClickCommand
-        private ICommand _clickCommand;
-        public ICommand ClickCommand
+        #region OkCommand
+        private ICommand _okCommand;
+        public ICommand OkCommand
         {
             get
             {
-                return _clickCommand ?? (_clickCommand = new CommandHandler(() => OnClick()));
+                return _okCommand ?? (_okCommand = new CommandHandler(() => OnClick()));
             }
         }
         private void OnClick()
         {
             model.SaveSettings();
+            this.CloseAction();
         }
         #endregion
 
@@ -89,9 +88,12 @@ namespace FlightSimulator.ViewModels.Windows
         private void OnCancel()
         {
             model.ReloadSettings();
+            this.CloseAction();
         }
         #endregion
         #endregion
+
+        public Action CloseAction { get; set; }
     }
 }
 

@@ -14,7 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FlightSimulator.Model;
+using FlightSimulator.Model.Interface;
 using FlightSimulator.ViewModels;
+using FlightSimulator.Servers;
 using Microsoft.Research.DynamicDataDisplay;
 using Microsoft.Research.DynamicDataDisplay.DataSources;
 
@@ -29,6 +31,8 @@ namespace FlightSimulator.Views
         public FlightBoard()
         {
             InitializeComponent();
+            FlightBoardViewModel vm = new FlightBoardViewModel(new FlightBoardModel());
+            DataContext = vm;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -45,7 +49,7 @@ namespace FlightSimulator.Views
             if(e.PropertyName.Equals("Lat") || e.PropertyName.Equals("Lon"))
             {
                 FlightBoardViewModel flightBoardVM = sender as FlightBoardViewModel;
-                Point p = new Point(flightBoardVM.Lat, flightBoardVM.Lon);
+                Point p = new Point(flightBoardVM.VM_Lat, flightBoardVM.VM_Lon);
                 planeLocations.AppendAsync(Dispatcher, p);
             }
         }
