@@ -20,23 +20,24 @@ namespace FlightSimulator.ViewModels.Windows
         private ICommand m_OkCommand;
         private ICommand m_ClearCommand;
         private CommandReader m_reader;
+        private bool okClicked = false;
 
-   
 
-        public AutoControlModelView()
+
+        public AutoControlModelView(Servers.CommandClient client)
         {
             this.line = "";
-            this.m_reader = new CommandReader();
+            this.m_reader = new CommandReader(client);
         }
 
         /// <summary>
         /// Color propety- change the screen coler by our logic
         /// </summary>
-        public string Color
+        public string BackGroundColor
         {
             get
             {
-                if (this.line != "")
+                if (line != "" && !okClicked)
                 {
                     return ("RED");
                 }
@@ -46,6 +47,7 @@ namespace FlightSimulator.ViewModels.Windows
                 }
 
             }
+            set { }
         }
 
         /// <summary>
@@ -53,14 +55,15 @@ namespace FlightSimulator.ViewModels.Windows
         /// </summary>
         public string Line
         {
+            get
+            {
+                NotifyPropertyChanged("BackGroundColor");
+                return line;
+            }
             set
             {
                 line = value;
-            }
-            get
-            {
-                NotifyPropertyChanged("Color");
-                return this.line;
+                okClicked = false;
             }
         }
 
@@ -79,7 +82,8 @@ namespace FlightSimulator.ViewModels.Windows
         {
 
             m_reader.AnalyzeAndSend(line);
-
+            okClicked = true;
+            NotifyPropertyChanged("BackGroundColor");
         }
 
         /// <summary>
@@ -90,7 +94,7 @@ namespace FlightSimulator.ViewModels.Windows
         {
             get
             {
-                return this.m_ClearCommand ?? (m_OkCommand = new CommandHandler(() => ClearClick()));
+                return this.m_ClearCommand ?? (m_ClearCommand = new CommandHandler(() => ClearClick()));
             }
         }
 

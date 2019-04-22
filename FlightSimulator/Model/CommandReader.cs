@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FlightSimulator.Model
@@ -19,9 +20,9 @@ namespace FlightSimulator.Model
 
         CommandClient m_clientChannel;
         
-        public CommandReader()
+        public CommandReader(CommandClient client)
         {
-            m_clientChannel = new CommandClient();
+            m_clientChannel = client;
         }
 
 
@@ -38,8 +39,10 @@ namespace FlightSimulator.Model
                 string command = splitLine;
                 command += "\r\n";
                 m_clientChannel.WriteMsg(command);
-            }
+                //wait 2 sec between each command
+                Thread.Sleep(2000);
 
+            }
         }
         /// <summary>
         /// Parse the text with \r\n delimiter

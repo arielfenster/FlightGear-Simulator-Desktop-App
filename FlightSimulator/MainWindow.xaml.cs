@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FlightSimulator.Model;
+using FlightSimulator.Model.Interface;
+using FlightSimulator.Servers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,12 +25,6 @@ namespace FlightSimulator
         public MainWindow()
         {
             InitializeComponent();
-            // this is a note! hahaha
-        }
-
-        private void Btn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

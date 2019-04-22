@@ -5,12 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.Servers
 {
-    class CommandClient : IServer
+    public class CommandClient : IServer
     {
      //   private int port;
      //   private string ip;
@@ -49,6 +50,8 @@ namespace FlightSimulator.Servers
             StreamWriter st = new StreamWriter(ns);
             st.Write(msg);
             st.Flush();// very important
+
+            
 
 
         }

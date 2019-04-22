@@ -10,17 +10,23 @@ namespace FlightSimulator.ViewModels
     class ManualControlViewModel : BaseNotify
        
     {
-        private CommandClient client = new CommandClient();
+        private CommandClient client;
+
+        public ManualControlViewModel(CommandClient commandClient)
+        {
+            this.client = commandClient;
+        }
+
         /// <commands>
         /// Set the value you get from the joy-stick to the simulator adress
         /// <commands>
-        public float throttelCommand
+        public float ThrottelChange
         {
             set
             {
-                string command = "set controls/engines/current-engine/throttle";
-                command = command + value;
-                command = "\r\n";//else the simulator woudnt do nothing
+                string command = "set controls/engines/current-engine/throttle ";
+                command += value;
+                command += "\r\n";//else the simulator woudnt do nothing
                 client.WriteMsg(command);
                 
             }
@@ -28,13 +34,13 @@ namespace FlightSimulator.ViewModels
         /// <commands>
         /// Set the value you get from the joy-stick to the simulator address
         /// <commands>
-        public float rudderCommand
+        public float RudderChanged
         {
             set
             {
-                string command = "set /controls/flight/elevator     ";
-                command = command + value;
-                command = "\r\n";//else the simulator woudnt do nothing
+                string command = "set /controls/flight/rudder ";
+                command += value;
+                command += "\r\n";//else the simulator woudnt do nothing
                 client.WriteMsg(command);
 
 
@@ -43,13 +49,13 @@ namespace FlightSimulator.ViewModels
         /// <commands>
         /// Set the value you get from the joy-stick to the simulator address
         /// <commands>
-        public float elevatorCommand
+        public float ElevetorCommand
         {
             set
             {
-                string command = " set bla bla";
-                command = command + value;
-                command = "\r\n";//else the simulator woudnt do nothing
+                string command = " set /controls/flight/elevator ";
+                command += value;
+                command += "\r\n";//else the simulator woudnt do nothing
                 client.WriteMsg(command);
 
             }
@@ -57,13 +63,13 @@ namespace FlightSimulator.ViewModels
         /// <commands
         /// Set the value you get from the joy-stick to the simulator address
         /// <commands>
-        public float ailronCommand
+        public float AilronCommand
         {
             set
             {
-                string command = "set /controls/flight/aileron";
-                command = command + value;
-                command = "\r\n"; //else the simulator wodnt do nothing
+                string command = "set /controls/flight/aileron ";
+                command += value;
+                command += "\r\n"; //else the simulator wodnt do nothing
                 client.WriteMsg(command);
             }
         }

@@ -1,7 +1,6 @@
 ﻿using FlightSimulator.Model;
 using FlightSimulator.Model.Interface;
 using FlightSimulator.Servers;
-using FlightSimulator.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,23 +13,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace FlightSimulator.Views.Windows
 {
     /// <summary>
-    /// Interaction logic for Controls.xaml
+    /// Interaction logic for rightTabContorl.xaml
     /// </summary>
-    public partial class ManualControl : UserControl
+    public partial class RightTabsController : UserControl
     {
-        public ManualControl()
+        public RightTabsController()
         {
             InitializeComponent();
-            CommandClient commandClient = new CommandClient();
-            ISettingsModel settingsModel = new ApplicationSettingsModel();
-            commandClient.Connect(settingsModel);
-            DataContext = new ManualControlViewModel(commandClient) ;
+            
         }
-
     }
 }
