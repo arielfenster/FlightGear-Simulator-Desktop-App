@@ -1,4 +1,8 @@
-﻿using System;
+﻿using FlightSimulator.Model;
+using FlightSimulator.Model.Interface;
+using FlightSimulator.Servers;
+using FlightSimulator.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +21,16 @@ namespace FlightSimulator.Views.Windows
     /// <summary>
     /// Interaction logic for Controls.xaml
     /// </summary>
-    public partial class Controls : Window
+    public partial class ManualControl : UserControl
     {
-        public Controls()
+        public ManualControl()
         {
             InitializeComponent();
+            CommandClient commandClient = new CommandClient();
+            ISettingsModel settingsModel = new ApplicationSettingsModel();
+            commandClient.Connect(settingsModel);
+            DataContext = new ManualControlViewModel(commandClient) ;
         }
+
     }
 }

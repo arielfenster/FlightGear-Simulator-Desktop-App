@@ -55,8 +55,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>FlightSimulator.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DynamicDataDisplay">
@@ -90,13 +89,15 @@
     </Compile>
     <Compile Include="Model\ApplicationSettingsModel.cs" />
     <Compile Include="Model\CommandHandler.cs" />
+    <Compile Include="Model\CommandReader.cs" />
     <Compile Include="Model\EventArgs\VirtualJoystickEventArgs.cs" />
-    <Compile Include="Model\FlightBoardModel.cs" />
     <Compile Include="Model\Interface\ISettingsModel.cs" />
     <Compile Include="Servers\CommandClient.cs" />
     <Compile Include="Servers\InfoServer.cs" />
     <Compile Include="Servers\IServer.cs" />
     <Compile Include="ViewModels\BaseNotify.cs" />
+    <Compile Include="ViewModels\Windows\AutoControlModelView.cs" />
+    <Compile Include="ViewModels\Windows\ManualControlViewModel.cs" />
     <Compile Include="ViewModels\FlightBoardViewModel.cs" />
     <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />
     <Compile Include="Views\FlightBoard.xaml.cs">
@@ -109,11 +110,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\SettingsWindow.xaml.cs">
-      <DependentUpon>SettingsWindow.xaml</DependentUpon>
+    <Compile Include="Views\Windows\AutoControl.xaml.cs">
+      <DependentUpon>AutoControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Windows\Controls.xaml.cs">
-      <DependentUpon>Controls.xaml</DependentUpon>
+    <Compile Include="Views\Windows\ManualControl.xaml.cs">
+      <DependentUpon>ManualControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\RightTabsController.xaml.cs">
+      <DependentUpon>RightTabsController.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
@@ -127,11 +131,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SettingsWindow.xaml">
+    <Page Include="Views\Windows\AutoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Windows\Controls.xaml">
+    <Page Include="Views\Windows\ManualControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\RightTabsController.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

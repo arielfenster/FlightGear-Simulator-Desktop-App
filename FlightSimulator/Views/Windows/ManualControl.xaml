@@ -1,34 +1,21 @@
-﻿<Window
+﻿<UserControl
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlightSimulator.Views.Windows"
-        xmlns:Views="clr-namespace:FlightSimulator.Views" x:Class="FlightSimulator.Views.Windows.Controls"
+        xmlns:Views="clr-namespace:FlightSimulator.Views" x:Class="FlightSimulator.Views.Windows.ManualControl"
         mc:Ignorable="d"
-        Title="Controls" Height="550" Width="800">
+        Height="550" Width="800">
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="500" Margin="10,10,0,0" VerticalAlignment="Top" Width="776">
-            <TabItem Header="Manual">
-                <Grid Background="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="313*"/>
                         <ColumnDefinition Width="27*"/>
                         <ColumnDefinition Width="44*"/>
                         <ColumnDefinition Width="386*"/>
                     </Grid.ColumnDefinitions>
-                    <Views:Joystick HorizontalAlignment="Left" Height="323" Margin="174,65,0,0" VerticalAlignment="Top" Width="361" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="4">
-                        <Views:Joystick.RenderTransform>
-                            <TransformGroup>
-                                <ScaleTransform ScaleX="-1"/>
-                                <SkewTransform/>
-                                <RotateTransform/>
-                                <TranslateTransform/>
-                            </TransformGroup>
-                        </Views:Joystick.RenderTransform>
-                    </Views:Joystick>
-                    <Slider Name="Rudder" Value="{Binding RudderChanged}" HorizontalAlignment="Left" Margin="226,416,0,0" VerticalAlignment="Top" Height="46" Width="262" Grid.ColumnSpan="4" Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True"/>
-                    <Slider HorizontalAlignment="Left" Margin="-66,220,0,0" VerticalAlignment="Top" Height="50" Width="256" RenderTransformOrigin="0.5,0.5" Maximum="100" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True">
+                    <Slider x:Name="rudderSl" Value="{Binding RudderChanged, StringFormat=0.00}" HorizontalAlignment="Left" Margin="226,416,0,0" VerticalAlignment="Top" Height="46" Width="262" Grid.ColumnSpan="4" Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True"/>
+                    <Slider x:Name ="throttelSl" Value="{Binding ThrottelChange, StringFormat=0.00}" HorizontalAlignment="Left" Margin="-66,220,0,0" VerticalAlignment="Top" Height="50" Width="256" RenderTransformOrigin="0.5,0.5" Maximum="100" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True">
                         <Slider.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -69,7 +56,7 @@
                             </TransformGroup>
                         </Label.RenderTransform>
                     </Label>
-                    <Label Content="0.0" HorizontalAlignment="Left" Margin="187,64,0,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Column="3">
+                    <Label x:Name="ElevetorValue" Content="{Binding ElementName=joystick,Path=Elevator,StringFormat=N2}" HorizontalAlignment="Left" Margin="187,64,0,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Column="3">
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -79,7 +66,7 @@
                             </TransformGroup>
                         </Label.RenderTransform>
                     </Label>
-                    <Label Content="0.0" HorizontalAlignment="Left" Margin="160,7,0,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Column="3">
+                    <Label x:Name="AilronVal" Content="{Binding ElementName=joystick,Path=Aileron,StringFormat=N2}" HorizontalAlignment="Left" Margin="160,7,0,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Column="3">
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -89,7 +76,7 @@
                             </TransformGroup>
                         </Label.RenderTransform>
                     </Label>
-                    <Label Name="rudderValue"  Content="{Binding ElementName=Rudder,Path=Value,StringFormat=N2}" HorizontalAlignment="Left" Margin="143,423,0,-4" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Column="3">
+                    <Label Name="rudderValue"  Content="{Binding ElementName=rudderSl,Path=Value,StringFormat=N2}" HorizontalAlignment="Left" Margin="143,423,0,-4" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Column="3">
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -99,7 +86,7 @@
                             </TransformGroup>
                         </Label.RenderTransform>
                     </Label>
-                    <Label Content="0" HorizontalAlignment="Left" Margin="68,46,0,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
+                    <Label x:Name="throttleVal" Content="{Binding ElementName=throttelSl,Path=Value,StringFormat=N2 }" HorizontalAlignment="Left" Margin="68,46,0,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
                         <Label.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
@@ -109,12 +96,20 @@
                             </TransformGroup>
                         </Label.RenderTransform>
                     </Label>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Auto Pilot">
-                <Grid Background="#FFE5E5E5" Margin="0,0,0,-11"/>
-            </TabItem>
-        </TabControl>
-
+        <Views:Joystick x:Name="joystick"
+                                    Aileron="{Binding AilronCommand,Mode=OneWayToSource}"
+                                    Elevator="{Binding ElevetorCommand, Mode=OneWayToSource}"
+                                    HorizontalAlignment="Left" Height="323" Margin="174,65,0,0" 
+                                    VerticalAlignment="Top" Width="361" RenderTransformOrigin="0.5,0.5" 
+                                    Grid.ColumnSpan="4">
+            <Views:Joystick.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-270"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Views:Joystick.RenderTransform>
+        </Views:Joystick>
     </Grid>
-</Window>
+</UserControl>
