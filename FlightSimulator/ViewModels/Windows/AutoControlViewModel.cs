@@ -24,10 +24,10 @@ namespace FlightSimulator.ViewModels.Windows
 
 
 
-        public AutoControlViewModel()
+        public AutoControlViewModel(Servers.CommandClient client)
         {
             this.line = "";
-            this.m_reader = new CommandReader(new Servers.CommandsServer());
+            this.m_reader = new CommandReader(client);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace FlightSimulator.ViewModels.Windows
             {
                 if (line != "" && !okClicked)
                 {
-                    return ("RED");
+                    return ("Pink");
                 }
                 else
                 {

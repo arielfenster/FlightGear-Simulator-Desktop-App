@@ -27,7 +27,10 @@ namespace FlightSimulator.Views.Windows
         {
 
             InitializeComponent();
-            DataContext = new AutoControlViewModel();
+            CommandClient commandClient = new CommandClient();
+            ISettingsModel settingsModel = new ApplicationSettingsModel();
+            commandClient.Connect(settingsModel);
+            DataContext = new AutoControlViewModel(commandClient);
         }
     }
 }
