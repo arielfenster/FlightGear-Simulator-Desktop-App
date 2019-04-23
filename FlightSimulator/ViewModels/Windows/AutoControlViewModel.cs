@@ -1,4 +1,5 @@
 ﻿using FlightSimulator.Model;
+using FlightSimulator.Servers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows.Input;
 
 namespace FlightSimulator.ViewModels.Windows
 {
-    class AutoControlViewModel:BaseNotify
+    class AutoControlViewModel : BaseNotify
     {
         /// <summary>
         /// Icommand - contract for commands that are written in view
@@ -24,10 +25,10 @@ namespace FlightSimulator.ViewModels.Windows
 
 
 
-        public AutoControlViewModel(Servers.CommandClient client)
+        public AutoControlViewModel()
         {
             this.line = "";
-            this.m_reader = new CommandReader(client);
+            this.m_reader = new CommandReader(CommandsServer.Instance);
         }
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace FlightSimulator.ViewModels.Windows
             {
                 if (line != "" && !okClicked)
                 {
-                    return ("Pink");
+                    return ("RED");
                 }
                 else
                 {
@@ -103,7 +104,7 @@ namespace FlightSimulator.ViewModels.Windows
         /// </summary>
         public void ClearClick()
         {
-            line = "" ;
+            line = "";
             NotifyPropertyChanged(line);
         }
 

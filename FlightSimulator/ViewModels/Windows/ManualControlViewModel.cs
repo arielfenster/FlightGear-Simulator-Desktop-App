@@ -14,7 +14,7 @@ namespace FlightSimulator.ViewModels
 
         public ManualControlViewModel()
         {
-            this.reader = new CommandReader(CommandsServer.instance);
+            this.reader = new CommandReader(CommandsServer.Instance);
         }
 
         /// <commands>

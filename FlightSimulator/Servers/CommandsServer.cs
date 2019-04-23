@@ -17,18 +17,18 @@ namespace FlightSimulator.Servers
      //   private string ip;
         private IPEndPoint endPoint;
         private TcpClient tcpClient;
-        public static CommandsServer instance;
+        private static CommandsServer m_instance;
 
         #region Singelton
-        public CommandsServer Instance
+        public static CommandsServer Instance
         {
             get
             {
-                if (instance == null)
+                if (m_instance == null)
                 {
-                    instance = new CommandsServer();
+                    m_instance = new CommandsServer();
                 }
-                return instance;
+                return m_instance;
             }
         }
         // here i init the members for the connection

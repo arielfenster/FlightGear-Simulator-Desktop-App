@@ -93,7 +93,7 @@ namespace FlightSimulator.ViewModels
                 infoServ.Connect(settings);
             });
             t.Start();
-            IServer commandsServ = CommandsServer.instance;
+            IServer commandsServ = CommandsServer.m_instance;
             commandsServ.Connect(settings);
             t.Join();
         }

@@ -26,7 +26,6 @@ namespace FlightSimulator.Views.Windows
         public RightTabsController()
         {
             InitializeComponent();
-            
         }
     }
 }
