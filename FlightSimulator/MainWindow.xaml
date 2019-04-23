@@ -4,9 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlightSimulator"
-        xmlns:Windows="clr-namespace:FlightSimulator.Views.Windows" x:Class="FlightSimulator.MainWindow"
+        xmlns:Windows="clr-namespace:FlightSimulator.Views.Windows" xmlns:Views="clr-namespace:FlightSimulator.Views" x:Class="FlightSimulator.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="906">
-    <!--<Windows:RightTabsController HorizontalAlignment="Left" Height="529" Margin="19,10,0,0" VerticalAlignment="Top" Width="742"/>-->
+        Title="MainWindow" Height="620.667" Width="1526.667">
+    <Grid>
+
+      
+        <Views:FlightBoard Height="580" Margin="766,0,6,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+            <Views:FlightBoard.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.075"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Views:FlightBoard.RenderTransform>
+        </Views:FlightBoard>
+        <Windows:RightTabsController HorizontalAlignment="Left" Height="574" Margin="10,10,0,0" VerticalAlignment="Top" Width="751"/>
+    </Grid>
 </Window>
+    
     

@@ -60,10 +60,16 @@ namespace FlightSimulator.Servers
         // Use StreamWrite to write the simuletur
         public void WriteMsg(string msg)
         {
-            NetworkStream ns = tcpClient.GetStream();
-            StreamWriter st = new StreamWriter(ns);
-            st.Write(msg);
-            st.Flush();// very important
+            if (tcpClient != null)
+            {
+                NetworkStream ns = tcpClient.GetStream();
+                StreamWriter st = new StreamWriter(ns);
+                st.Write(msg);
+                st.Flush();// very important
+            }
+            
+
+
         }
     }
 }
