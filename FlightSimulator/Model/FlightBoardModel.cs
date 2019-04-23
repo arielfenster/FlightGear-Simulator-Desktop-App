@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Net.Sockets;
 using FlightSimulator.ViewModels;
 
@@ -44,27 +45,30 @@ namespace FlightSimulator.Model
 
             // Read the data from the simulator
             int bytesRead = stream.Read(bytes, 0, bytes.Length);
-
-            while (bytesRead != 0)
+            Thread t = new Thread(delegate ()
             {
-                string dataReceived = System.Text.Encoding.ASCII.GetString(bytes, 0, bytesRead);
-                string[] lonLatVals = { "", "" };
-
-                // Processing the received input to extract only the latitude and longitude values
-                this.RetrieveLonAndLat(ref dataReceived, lonLatVals);
-
-                // Send the new values to the flight board view model to display them
-                if (lonLatVals[(int)Values.Lon] != "")
+                while (true)
                 {
-                    this.lon = Double.Parse(lonLatVals[(int)Values.Lon]);
+                    string dataReceived = System.Text.Encoding.ASCII.GetString(bytes, 0, bytesRead);
+                    string[] lonLatVals = { "", "" };
+
+                    // Processing the received input to extract only the latitude and longitude values
+                    this.RetrieveLonAndLat(ref dataReceived, lonLatVals);
+
+                    // Send the new values to the flight board view model to display them
+                    if (lonLatVals[(int)Values.Lon] != "")
+                    {
+                        this.lon = Double.Parse(lonLatVals[(int)Values.Lon]);
+                    }
+                    if (lonLatVals[(int)Values.Lat] != "")
+                    {
+                        this.lat = Double.Parse(lonLatVals[(int)Values.Lat]);
+                    }
+                    // Continue reading
+                    bytesRead = stream.Read(bytes, 0, bytes.Length);
                 }
-                if (lonLatVals[(int)Values.Lat] != "")
-                {
-                    this.lat = Double.Parse(lonLatVals[(int)Values.Lat]);
-                }
-                // Continue reading
-                bytesRead = stream.Read(bytes, 0, bytes.Length);
-            }
+            });
+            t.Start();
         }
 
         /// <summary>

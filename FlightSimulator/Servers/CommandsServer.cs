@@ -64,10 +64,6 @@ namespace FlightSimulator.Servers
             StreamWriter st = new StreamWriter(ns);
             st.Write(msg);
             st.Flush();// very important
-
-            
-
-
         }
     }
 }

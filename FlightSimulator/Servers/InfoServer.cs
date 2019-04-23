@@ -17,7 +17,7 @@ namespace FlightSimulator.Servers
     class InfoServer : IServer
     {
         private TcpListener server;
-        private readonly FlightBoardModel flightModel;       
+        private readonly FlightBoardModel flightModel;
 
         public InfoServer(FlightBoardModel flightBoardModel)
         {
@@ -36,16 +36,13 @@ namespace FlightSimulator.Servers
             {
                 string ip = settings.FlightServerIP;
                 int port = settings.FlightInfoPort;
-                while (true)
-                {
-                    this.server = new TcpListener(System.Net.IPAddress.Parse(ip), port);
-                    this.server.Start();
-                    client = this.server.AcceptTcpClient();
-                    this.flightModel.ReadDataFromClient(client);
-                }
+                this.server = new TcpListener(System.Net.IPAddress.Parse(ip), port);
+                this.server.Start();
+                client = this.server.AcceptTcpClient();
+                this.flightModel.ReadDataFromClient(client);
             }
 
-            catch(SocketException e)
+            catch (SocketException e)
             {
                 Console.WriteLine("Socket Exception: ", e);
             }
@@ -58,7 +55,6 @@ namespace FlightSimulator.Servers
                 client.GetStream().Close();
                 client.Close();
                 this.Close();
-                
             }
         }       
 
@@ -69,25 +65,6 @@ namespace FlightSimulator.Servers
         {
             this.server.Stop();
         }
-
-        /*
-        public static void Main(string[] args)
-        {
-            ISettingsModel settings = new ApplicationSettingsModel
-            {
-                FlightServerIP = "127.0.0.1",
-                FlightInfoPort = 5400
-            };
-            IServer s = new InfoServer(new FlightBoardViewModel());
-            Thread t = new Thread(delegate ()
-            {
-                s.Connect(settings);
-            });
-            t.Start();
-            t.Join();
-            Console.ReadKey();
-        }
-        */
     }
 }
  

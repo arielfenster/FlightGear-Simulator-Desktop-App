@@ -1,4 +1,5 @@
-﻿using FlightSimulator.Views;
+﻿using FlightSimulator.ViewModels;
+using FlightSimulator.Views;
 using FlightSimulator.Views.Windows;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,6 @@ namespace FlightSimulator
         public MainWindow()
         {
             InitializeComponent();
-            
         }
     }
 }

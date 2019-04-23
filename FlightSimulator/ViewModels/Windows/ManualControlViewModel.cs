@@ -28,7 +28,6 @@ namespace FlightSimulator.ViewModels
                 command += value;
                 command += "\r\n";//else the simulator woudnt do nothing
                 this.reader.AnalyzeAndSend(command);
-                
             }
         }
         /// <commands>
@@ -42,8 +41,6 @@ namespace FlightSimulator.ViewModels
                 command += value;
                 command += "\r\n";//else the simulator woudnt do nothing
                 this.reader.AnalyzeAndSend(command);
-
-
             }
         }
         /// <commands>
@@ -57,7 +54,6 @@ namespace FlightSimulator.ViewModels
                 command += value;
                 command += "\r\n";//else the simulator woudnt do nothing
                 this.reader.AnalyzeAndSend(command);
-
             }
         }
         /// <commands

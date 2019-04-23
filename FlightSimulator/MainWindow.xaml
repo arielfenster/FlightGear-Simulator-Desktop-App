@@ -7,6 +7,6 @@
         xmlns:Windows="clr-namespace:FlightSimulator.Views.Windows" x:Class="FlightSimulator.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="906">
-    <Windows:RightTabsController HorizontalAlignment="Left" Height="529" Margin="19,10,0,0" VerticalAlignment="Top" Width="742"/>
+    <!--<Windows:RightTabsController HorizontalAlignment="Left" Height="529" Margin="19,10,0,0" VerticalAlignment="Top" Width="742"/>-->
 </Window>
     

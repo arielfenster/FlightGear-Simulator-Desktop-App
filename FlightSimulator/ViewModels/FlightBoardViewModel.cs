@@ -88,14 +88,9 @@ namespace FlightSimulator.ViewModels
             ISettingsModel settings = new ApplicationSettingsModel();
 
             IServer infoServ = new InfoServer(this.model);
-            Thread t = new Thread(delegate()
-            {
-                infoServ.Connect(settings);
-            });
-            t.Start();
-            IServer commandsServ = CommandsServer.m_instance;
+            infoServ.Connect(settings);
+            IServer commandsServ = CommandsServer.Instance;
             commandsServ.Connect(settings);
-            t.Join();
         }
         #endregion
         #endregion
