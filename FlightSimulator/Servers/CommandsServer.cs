@@ -67,9 +67,6 @@ namespace FlightSimulator.Servers
                 st.Write(msg);
                 st.Flush();// very important
             }
-            
-
-
         }
     }
 }

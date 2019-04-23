@@ -86,11 +86,10 @@ namespace FlightSimulator.ViewModels
         private void OnConnect()
         {
             ISettingsModel settings = new ApplicationSettingsModel();
+            this.model.ConnectToServer(new InfoServer());
 
-            IServer infoServ = new InfoServer(this.model);
-            infoServ.Connect(settings);
-            IServer commandsServ = CommandsServer.Instance;
-            commandsServ.Connect(settings);
+            //IServer commandsServ = CommandsServer.Instance;
+            //commandsServ.Connect(settings);
         }
         #endregion
         #endregion

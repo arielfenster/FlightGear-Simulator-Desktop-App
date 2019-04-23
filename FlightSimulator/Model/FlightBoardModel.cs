@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Net.Sockets;
 using FlightSimulator.ViewModels;
+using FlightSimulator.Servers;
+using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.Model
 {
@@ -36,20 +38,14 @@ namespace FlightSimulator.Model
             }
         }
 
-        public void ReadDataFromClient(TcpClient client)
+        public void ConnectToServer(InfoServer server)
         {
-            // Used to read the input from the flight simulator
-            Byte[] bytes = new byte[256];
-
-            NetworkStream stream = client.GetStream();
-
-            // Read the data from the simulator
-            int bytesRead = stream.Read(bytes, 0, bytes.Length);
-            Thread t = new Thread(delegate ()
+            server.Connect(new ApplicationSettingsModel());
+            Thread thread = new Thread(delegate ()
             {
                 while (true)
                 {
-                    string dataReceived = System.Text.Encoding.ASCII.GetString(bytes, 0, bytesRead);
+                    string dataReceived = server.ReadFromSimulator();
                     string[] lonLatVals = { "", "" };
 
                     // Processing the received input to extract only the latitude and longitude values
@@ -58,28 +54,29 @@ namespace FlightSimulator.Model
                     // Send the new values to the flight board view model to display them
                     if (lonLatVals[(int)Values.Lon] != "")
                     {
-                        this.lon = Double.Parse(lonLatVals[(int)Values.Lon]);
+                        this.Lon = Double.Parse(lonLatVals[(int)Values.Lon]);
                     }
                     if (lonLatVals[(int)Values.Lat] != "")
                     {
-                        this.lat = Double.Parse(lonLatVals[(int)Values.Lat]);
+                        this.Lat = Double.Parse(lonLatVals[(int)Values.Lat]);
                     }
-                    // Continue reading
-                    bytesRead = stream.Read(bytes, 0, bytes.Length);
                 }
             });
-            t.Start();
+            thread.Start();
         }
 
         /// <summary>
         /// Process an input from the flight simulator to extract the specific longitude and latitude values
         /// and store them in an array.
         /// </summary>
-        /// <param name="received"> A string of raw data from the simulator. </param>
+        /// <param name="data"> A string of raw data from the simulator. </param>
         /// <param name="details"> An array that stores the extracted values </param>
-        private void RetrieveLonAndLat(ref string received, string[] details)
+        private void RetrieveLonAndLat(ref string data, string[] details)
         {
-            // Lon is index 0. Lat is index 1
+            char[] delimiter = { ',' };
+            string[] split = data.Split(delimiter);
+            details[(int)Values.Lat] = split[(int)Values.Lat];
+            details[(int)Values.Lon] = split[(int)Values.Lon];
         }
     }
 }
