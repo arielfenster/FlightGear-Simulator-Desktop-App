@@ -51,7 +51,7 @@ namespace FlightSimulator.Servers
             }
             catch (Exception f)
             {
-                Console.WriteLine("ExceptioN: ", f);
+                Console.WriteLine("Exception: ", f);
             }
             finally
             {

@@ -93,11 +93,11 @@
     <Compile Include="Model\EventArgs\VirtualJoystickEventArgs.cs" />
     <Compile Include="Model\FlightBoardModel.cs" />
     <Compile Include="Model\Interface\ISettingsModel.cs" />
-    <Compile Include="Servers\CommandClient.cs" />
+    <Compile Include="Servers\CommandsServer.cs" />
     <Compile Include="Servers\InfoServer.cs" />
     <Compile Include="Servers\IServer.cs" />
     <Compile Include="ViewModels\BaseNotify.cs" />
-    <Compile Include="ViewModels\Windows\AutoControlModelView.cs" />
+    <Compile Include="ViewModels\Windows\AutoControlViewModel.cs" />
     <Compile Include="ViewModels\Windows\ManualControlViewModel.cs" />
     <Compile Include="ViewModels\FlightBoardViewModel.cs" />
     <Compile Include="ViewModels\Windows\SettingsWindowViewModel.cs" />

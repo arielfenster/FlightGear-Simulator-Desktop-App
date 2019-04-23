@@ -1,6 +1,5 @@
-﻿using FlightSimulator.Model;
-using FlightSimulator.Model.Interface;
-using FlightSimulator.Servers;
+﻿using FlightSimulator.Views;
+using FlightSimulator.Views.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +24,7 @@ namespace FlightSimulator
         public MainWindow()
         {
             InitializeComponent();
+            AutoControl
         }
     }
 }

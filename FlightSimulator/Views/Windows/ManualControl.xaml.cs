@@ -26,11 +26,7 @@ namespace FlightSimulator.Views.Windows
         public ManualControl()
         {
             InitializeComponent();
-            CommandClient commandClient = new CommandClient();
-            ISettingsModel settingsModel = new ApplicationSettingsModel();
-            commandClient.Connect(settingsModel);
-            DataContext = new ManualControlViewModel(commandClient) ;
+            DataContext = new ManualControlViewModel();
         }
-
     }
 }

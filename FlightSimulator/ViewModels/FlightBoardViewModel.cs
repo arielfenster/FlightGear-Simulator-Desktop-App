@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.ComponentModel;
@@ -86,10 +87,15 @@ namespace FlightSimulator.ViewModels
         {
             ISettingsModel settings = new ApplicationSettingsModel();
 
-            InfoServer infoServ = new InfoServer(this.model);
-            infoServ.Connect(settings);
-            CommandClient commandsServ = new CommandClient();
+            IServer infoServ = new InfoServer(this.model);
+            Thread t = new Thread(delegate()
+            {
+                infoServ.Connect(settings);
+            });
+            t.Start();
+            IServer commandsServ = CommandsServer.instance;
             commandsServ.Connect(settings);
+            t.Join();
         }
         #endregion
         #endregion

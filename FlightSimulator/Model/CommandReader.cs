@@ -18,9 +18,9 @@ namespace FlightSimulator.Model
         /// Will send the commands to the simulator
         /// </summary>
 
-        CommandClient m_clientChannel;
+        CommandsServer m_clientChannel;
         
-        public CommandReader(CommandClient client)
+        public CommandReader(CommandsServer client)
         {
             m_clientChannel = client;
         }

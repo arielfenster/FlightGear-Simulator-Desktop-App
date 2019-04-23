@@ -11,19 +11,33 @@ using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.Servers
 {
-    public class CommandClient : IServer
+    public class CommandsServer : IServer
     {
      //   private int port;
      //   private string ip;
         private IPEndPoint endPoint;
         private TcpClient tcpClient;
+        public static CommandsServer instance;
 
+        #region Singelton
+        public CommandsServer Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new CommandsServer();
+                }
+                return instance;
+            }
+        }
         // here i init the members for the connection
-        public CommandClient()
+        private CommandsServer()
         {
             this.endPoint = null;
             this.tcpClient = null;
         }
+        #endregion
 
         // Connect method:
         // First i get the ip address

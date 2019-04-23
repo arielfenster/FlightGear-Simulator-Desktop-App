@@ -1,4 +1,5 @@
 ﻿using FlightSimulator.Servers;
+using FlightSimulator.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,27 +8,26 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.ViewModels
 {
-    class ManualControlViewModel : BaseNotify
-       
+    class ManualControlViewModel : BaseNotify  
     {
-        private CommandClient client;
+        private readonly CommandReader reader;
 
-        public ManualControlViewModel(CommandClient commandClient)
+        public ManualControlViewModel()
         {
-            this.client = commandClient;
+            this.reader = new CommandReader(new CommandsServer());
         }
 
         /// <commands>
         /// Set the value you get from the joy-stick to the simulator adress
         /// <commands>
-        public float ThrottelChange
+        public float ThrottleChange
         {
             set
             {
                 string command = "set controls/engines/current-engine/throttle ";
                 command += value;
                 command += "\r\n";//else the simulator woudnt do nothing
-                client.WriteMsg(command);
+                this.reader.AnalyzeAndSend(command);
                 
             }
         }
@@ -41,7 +41,7 @@ namespace FlightSimulator.ViewModels
                 string command = "set /controls/flight/rudder ";
                 command += value;
                 command += "\r\n";//else the simulator woudnt do nothing
-                client.WriteMsg(command);
+                this.reader.AnalyzeAndSend(command);
 
 
             }
@@ -56,7 +56,7 @@ namespace FlightSimulator.ViewModels
                 string command = " set /controls/flight/elevator ";
                 command += value;
                 command += "\r\n";//else the simulator woudnt do nothing
-                client.WriteMsg(command);
+                this.reader.AnalyzeAndSend(command);
 
             }
         }
@@ -70,7 +70,7 @@ namespace FlightSimulator.ViewModels
                 string command = "set /controls/flight/aileron ";
                 command += value;
                 command += "\r\n"; //else the simulator wodnt do nothing
-                client.WriteMsg(command);
+                this.reader.AnalyzeAndSend(command);
             }
         }
     }

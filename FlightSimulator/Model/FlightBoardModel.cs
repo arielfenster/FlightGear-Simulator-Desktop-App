@@ -57,7 +57,6 @@ namespace FlightSimulator.Model
                 if (lonLatVals[(int)Values.Lon] != "")
                 {
                     this.lon = Double.Parse(lonLatVals[(int)Values.Lon]);
-                    
                 }
                 if (lonLatVals[(int)Values.Lat] != "")
                 {
