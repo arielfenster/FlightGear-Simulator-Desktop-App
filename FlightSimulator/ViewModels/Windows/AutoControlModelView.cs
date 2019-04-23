@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace FlightSimulator.ViewModels.Windows
 {
-    class AutoControlModelView:BaseNotify
+    class AutoControlViewModel:BaseNotify
     {
         /// <summary>
         /// Icommand - contract for commands that are written in view
@@ -24,7 +24,7 @@ namespace FlightSimulator.ViewModels.Windows
 
 
 
-        public AutoControlModelView(Servers.CommandClient client)
+        public AutoControlViewModel(Servers.CommandClient client)
         {
             this.line = "";
             this.m_reader = new CommandReader(client);
@@ -39,7 +39,7 @@ namespace FlightSimulator.ViewModels.Windows
             {
                 if (line != "" && !okClicked)
                 {
-                    return ("RED");
+                    return ("Pink");
                 }
                 else
                 {
