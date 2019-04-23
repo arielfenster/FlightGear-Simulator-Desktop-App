@@ -24,7 +24,7 @@ namespace FlightSimulator
         public MainWindow()
         {
             InitializeComponent();
-            AutoControl
+            
         }
     }
 }
