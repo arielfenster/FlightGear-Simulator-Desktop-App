@@ -8,28 +8,28 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.ViewModels
 {
-    class ManualControlViewModel : BaseNotify  
+    class ManualControlViewModel : BaseNotify 
     {
-        private readonly CommandReader reader;
+        //private readonly CommandsServerClientHandler reader;
+        private readonly ManualControlModel model;
 
-        public ManualControlViewModel()
+        public ManualControlViewModel(ManualControlModel model)
         {
-            this.reader = new CommandReader(CommandsServer.Instance);
+            //this.reader = new CommandsServerClientHandler(CommandsServer.Instance);
+            this.model = model;
         }
 
         /// <commands>
         /// Set the value you get from the joy-stick to the simulator adress
-        /// <commands>
+        /// <commands>        
         public float ThrottleChange
         {
             set
             {
-                string command = "set controls/engines/current-engine/throttle ";
-                command += value;
-                command += "\r\n";//else the simulator woudnt do nothing
-                this.reader.AnalyzeAndSend(command);
+                this.model.SendCommand("throttle", value);
             }
         }
+
         /// <commands>
         /// Set the value you get from the joy-stick to the simulator address
         /// <commands>
@@ -37,10 +37,7 @@ namespace FlightSimulator.ViewModels
         {
             set
             {
-                string command = "set /controls/flight/rudder ";
-                command += value;
-                command += "\r\n";//else the simulator woudnt do nothing
-                this.reader.AnalyzeAndSend(command);
+                this.model.SendCommand("rudder", value);
             }
         }
         /// <commands>
@@ -50,10 +47,7 @@ namespace FlightSimulator.ViewModels
         {
             set
             {
-                string command = " set /controls/flight/elevator ";
-                command += value;
-                command += "\r\n";//else the simulator woudnt do nothing
-                this.reader.AnalyzeAndSend(command);
+                this.model.SendCommand("elevator", value);
             }
         }
         /// <commands
@@ -63,10 +57,7 @@ namespace FlightSimulator.ViewModels
         {
             set
             {
-                string command = "set /controls/flight/aileron ";
-                command += value;
-                command += "\r\n"; //else the simulator wodnt do nothing
-                this.reader.AnalyzeAndSend(command);
+                this.model.SendCommand("aileron", value);
             }
         }
     }

@@ -17,9 +17,9 @@ namespace FlightSimulator.Servers
      //   private string ip;
         private IPEndPoint endPoint;
         private TcpClient tcpClient;
-        private static CommandsServer m_instance;
 
         #region Singelton
+        private static CommandsServer m_instance;
         public static CommandsServer Instance
         {
             get
@@ -49,13 +49,27 @@ namespace FlightSimulator.Servers
             this.endPoint = new IPEndPoint(ipAddress, settings.FlightCommandPort);
             this.tcpClient = new TcpClient();
             this.tcpClient.Connect(endPoint);
-            Console.WriteLine("Connected");
+            Console.WriteLine("Connected to Commands server");
         }
         //Dissconnect as TCP client
         public void Close()
         {
             tcpClient.Close();
         }
+
+        public TcpClient GetClient()
+        {
+            return this.tcpClient;
+        }
+
+        public string HandleCurrentClient()
+        {
+            return null;
+        }
+
+
+
+        /*
         // Write the massage to the simulator
         // Use StreamWrite to write the simuletur
         public void WriteMsg(string msg)
@@ -68,5 +82,6 @@ namespace FlightSimulator.Servers
                 st.Flush();// very important
             }
         }
+        */
     }
 }

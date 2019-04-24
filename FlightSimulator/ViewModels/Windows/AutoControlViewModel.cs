@@ -20,15 +20,15 @@ namespace FlightSimulator.ViewModels.Windows
         private string line;
         private ICommand m_OkCommand;
         private ICommand m_ClearCommand;
-        private CommandReader m_reader;
+        //private CommandsServerClientHandler m_reader;
+        private readonly AutoControlModel model;
         private bool okClicked = false;
 
-
-
-        public AutoControlViewModel()
+        public AutoControlViewModel(AutoControlModel model)
         {
             this.line = "";
-            this.m_reader = new CommandReader(CommandsServer.Instance);
+            this.model = model;
+            //this.m_reader = new CommandsServerClientHandler(CommandsServer.Instance);
         }
 
         /// <summary>
@@ -82,7 +82,8 @@ namespace FlightSimulator.ViewModels.Windows
         public void OkClick()
         {
 
-            m_reader.AnalyzeAndSend(line);
+            //m_reader.AnalyzeAndSend(line);
+            this.model.SendCommands(line);
             okClicked = true;
             NotifyPropertyChanged("BackGroundColor");
         }
@@ -107,6 +108,5 @@ namespace FlightSimulator.ViewModels.Windows
             line = "";
             NotifyPropertyChanged(line);
         }
-
     }
 }

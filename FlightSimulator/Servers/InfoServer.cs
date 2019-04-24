@@ -19,14 +19,16 @@ namespace FlightSimulator.Servers
     {
         private TcpListener server;
         private TcpClient client;
-        private BinaryReader reader;
+        //private BinaryReader reader;
+        private IClientHandler ch;
 
         //private readonly FlightBoardModel flightModel;
 
-        public InfoServer()
+        public InfoServer(IClientHandler ch)
         {
             this.server = null;
             this.client = null;
+            this.ch = ch;
         }
 
         /// <summary>
@@ -41,12 +43,12 @@ namespace FlightSimulator.Servers
                 string ip = settings.FlightServerIP;
                 int port = settings.FlightInfoPort;
                 this.server = new TcpListener(System.Net.IPAddress.Parse(ip), port);
-                this.server.Start();
 
                 Console.WriteLine("Waiting for connection...");
+                this.server.Start();
                 this.client = this.server.AcceptTcpClient();
-                this.reader = new BinaryReader(this.client.GetStream());
-                Console.WriteLine("Connected!");
+                //this.reader = new BinaryReader(this.client.GetStream());
+                Console.WriteLine("Connected to Info server");
             }
 
             catch (SocketException e)
@@ -59,17 +61,30 @@ namespace FlightSimulator.Servers
             }
         }
 
+        public string HandleCurrentClient()
+        {
+            return this.ch.HandleClient(this.client);
+        }
+
+        /*
+        public TcpClient GetClient()
+        {
+            return this.client;
+        }
+
         public string ReadFromSimulator()
         {
             string data = null;
             char c = reader.ReadChar();
-            while (c != '\n')
+            while (c != '\n' && c != '\0')
             {
                 data += c;
                 c = reader.ReadChar();
             }
             return data;
         }
+        */
+
 
         /// <summary>
         /// Close the connection to the socket.
