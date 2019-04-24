@@ -65,11 +65,6 @@ namespace FlightSimulator.Servers
             return this.tcpClient;
         }
 
-        public string HandleCurrentClient()
-        {
-            return null;
-        }
-
 
 
         /*

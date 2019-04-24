@@ -90,7 +90,7 @@
     <Compile Include="Model\ApplicationSettingsModel.cs" />
     <Compile Include="Model\AutoControlModel.cs" />
     <Compile Include="Model\CommandHandler.cs" />
-    <Compile Include="Model\CommandsServerClientHandler.cs" />
+    <Compile Include="Model\CommandsParser.cs" />
     <Compile Include="Model\EventArgs\VirtualJoystickEventArgs.cs" />
     <Compile Include="Model\FlightBoardModel.cs" />
     <Compile Include="Model\InfoServerClientHandler.cs" />

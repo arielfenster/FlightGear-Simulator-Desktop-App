@@ -24,13 +24,11 @@ namespace FlightSimulator.Servers
         /// </summary>
         void Close();
 
+
         /// <summary>
-        /// Return the client that is connected to the server.
+        /// Return the current client connected to the server.
         /// </summary>
         /// <returns></returns>
-        //TcpClient GetClient();
-
-
-        string HandleCurrentClient();
+        TcpClient GetClient();
     }
 }
