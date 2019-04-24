@@ -15,7 +15,7 @@
                         <ColumnDefinition Width="386*"/>
                     </Grid.ColumnDefinitions>
                     <Slider x:Name="rudderSl" Value="{Binding RudderChanged, StringFormat=0.00}" HorizontalAlignment="Left" Margin="226,416,0,0" VerticalAlignment="Top" Height="46" Width="262" Grid.ColumnSpan="4" Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="0.1" IsSnapToTickEnabled="True"/>
-                    <Slider x:Name ="throttelSl" Value="{Binding ThrottleChange, StringFormat=0.00}" HorizontalAlignment="Left" Margin="-66,220,0,0" VerticalAlignment="Top" Height="50" Width="256" RenderTransformOrigin="0.5,0.5" Maximum="100" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True">
+                    <Slider x:Name ="throttelSl" Value="{Binding ThrottleChange, StringFormat=0.00}" HorizontalAlignment="Left" Margin="-66,220,0,0" VerticalAlignment="Top" Height="50" Width="256" RenderTransformOrigin="0.5,0.5" Maximum="1" Minimum="-1" TickPlacement="BottomRight" TickFrequency="10" IsSnapToTickEnabled="True">
                         <Slider.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform/>
