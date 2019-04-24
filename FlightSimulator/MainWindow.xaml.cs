@@ -25,6 +25,9 @@ namespace FlightSimulator
         public MainWindow()
         {
             InitializeComponent();
+#if DEBUG
+            System.Diagnostics.PresentationTraceSources.DataBindingSource.Switch.Level = System.Diagnostics.SourceLevels.Critical;
+#endif
         }
     }
 }

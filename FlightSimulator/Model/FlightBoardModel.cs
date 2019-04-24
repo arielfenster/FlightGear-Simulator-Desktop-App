@@ -12,12 +12,26 @@ using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.Model
 {
-    class FlightBoardModel : BaseNotify
+    class FlightBoardModel : InfoServerClientHandler
     {
         private double lon;
         private double lat;
         private enum Values { Lon = 0, Lat };
 
+        #region Singleton
+        private static FlightBoardModel m_instance;
+        public static FlightBoardModel Instance
+        {
+            get
+            {
+                if (m_instance == null)
+                {
+                    m_instance = new FlightBoardModel();
+                }
+                return m_instance;
+            }
+        }
+        #endregion
         public double Lon
         {
             get { return this.lon; }
@@ -38,15 +52,17 @@ namespace FlightSimulator.Model
             }
         }
 
-        public void ConnectToServer(InfoServer server)
+        public void ConnectToServer(IServer server)
         {
             server.Connect(new ApplicationSettingsModel());
-            Thread thread = new Thread(delegate ()
+            string[] lonLatVals = { "", "" };
+
+            Thread thread = new Thread(() =>
             {
                 while (true)
                 {
-                    string dataReceived = server.ReadFromSimulator();
-                    string[] lonLatVals = { "", "" };
+                    // Receiving the raw data from the simulator
+                    string dataReceived = server.HandleCurrentClient();
 
                     // Processing the received input to extract only the latitude and longitude values
                     this.RetrieveLonAndLat(ref dataReceived, lonLatVals);
@@ -74,9 +90,9 @@ namespace FlightSimulator.Model
         private void RetrieveLonAndLat(ref string data, string[] details)
         {
             char[] delimiter = { ',' };
-            string[] split = data.Split(delimiter);
-            details[(int)Values.Lat] = split[(int)Values.Lat];
-            details[(int)Values.Lon] = split[(int)Values.Lon];
+            string[] tokens = data.Split(delimiter);
+            details[(int)Values.Lat] = tokens[(int)Values.Lat];
+            details[(int)Values.Lon] = tokens[(int)Values.Lon];
         }
     }
 }

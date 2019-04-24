@@ -15,12 +15,12 @@ namespace FlightSimulator.ViewModels
 {
     internal class FlightBoardViewModel : BaseNotify
     {
-        private FlightBoardModel model;
+        private readonly FlightBoardModel model;
 
         public FlightBoardViewModel(FlightBoardModel model)
         {
             this.model = model;
-            this.model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
+            this.model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
                 this.NotifyPropertyChanged("VM_" + e.PropertyName);
             };
@@ -85,9 +85,12 @@ namespace FlightSimulator.ViewModels
         }
         private void OnConnect()
         {
-            ISettingsModel settings = new ApplicationSettingsModel();
-            this.model.ConnectToServer(new InfoServer());
+            ConnectionsManager connections = new ConnectionsManager();
+            connections.CreateConnections();
 
+            //this.model.ConnectToServer(new InfoServer());
+
+            //ISettingsModel settings = ApplicationSettingsModel.Instance;
             //IServer commandsServ = CommandsServer.Instance;
             //commandsServ.Connect(settings);
         }

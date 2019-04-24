@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Sockets;
 using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.Servers
@@ -13,7 +14,7 @@ namespace FlightSimulator.Servers
     interface IServer
     {
         /// <summary>
-        /// Establish a connection to a specific socket
+        /// Establish a connection to a specific socket.
         /// </summary>
         /// <param name="settings"> Holds the IP and port of the requested connection. </param>
         void Connect(ISettingsModel settings);
@@ -22,5 +23,14 @@ namespace FlightSimulator.Servers
         /// Close the connection to the socket.
         /// </summary>
         void Close();
+
+        /// <summary>
+        /// Return the client that is connected to the server.
+        /// </summary>
+        /// <returns></returns>
+        //TcpClient GetClient();
+
+
+        string HandleCurrentClient();
     }
 }

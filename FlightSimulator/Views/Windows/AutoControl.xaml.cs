@@ -26,7 +26,7 @@ namespace FlightSimulator.Views.Windows
         public AutoControl()
         {
             InitializeComponent();
-            DataContext = new AutoControlViewModel();
+            DataContext = new AutoControlViewModel(new AutoControlModel());
         }
     }
 }
