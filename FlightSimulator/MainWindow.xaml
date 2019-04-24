@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:FlightSimulator"
         xmlns:Windows="clr-namespace:FlightSimulator.Views.Windows" xmlns:Views="clr-namespace:FlightSimulator.Views" x:Class="FlightSimulator.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="620.667" Width="1226.667">
-    <Grid Margin="0,0,5.667,12.333">
-        <Views:FlightBoard Height="592" Margin="766,0,4,-10" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+        Title="MainWindow" Height="620.667" Width="918.667">
+    <Grid Margin="0,0,0,12.333" HorizontalAlignment="Left" Width="957">
+        <Views:FlightBoard Height="576" Margin="486,-10,48,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
             <Views:FlightBoard.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -18,7 +18,7 @@
                 </TransformGroup>
             </Views:FlightBoard.RenderTransform>
         </Views:FlightBoard>
-        <Windows:RightTabsController HorizontalAlignment="Left" Height="574" Margin="10,10,0,0" VerticalAlignment="Top" Width="751"/>
+        <Windows:RightTabsController HorizontalAlignment="Left" Height="514" VerticalAlignment="Top" Width="767" Margin="0,10,0,0"/>
     </Grid>
 </Window>
     

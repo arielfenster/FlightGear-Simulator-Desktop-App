@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlightSimulator.Views.Windows"
         mc:Ignorable="d"
-        Height="450" Width="800">
-    <Grid Background="White">
+        Height="450" Width="655">
+    <Grid Background="White" Margin="0,0,196,0">
         <TextBox x:Name="CommandTextBox" HorizontalAlignment="Left" Height="356"
-                             TextWrapping="Wrap" VerticalAlignment="Top" Width="776" BorderBrush="Blue"
+                             TextWrapping="Wrap" VerticalAlignment="Top" Width="428" BorderBrush="Blue"
                              AcceptsReturn="True" Margin="10,10,0,0" Background="{Binding BackGroundColor}" Text="{Binding Line, UpdateSourceTrigger=PropertyChanged}">
         </TextBox>
 
 
-        <Button Content="Ok" HorizontalAlignment="Left" Margin="257,387,0,0" FontSize="17" FontWeight="Bold" VerticalAlignment="Top" Width="76" Command="{Binding OkCommand}" RenderTransformOrigin="1.23,0.644">
+        <Button Content="Ok" HorizontalAlignment="Left" Margin="80,387,0,0" FontSize="17" FontWeight="Bold" VerticalAlignment="Top" Width="76" Command="{Binding OkCommand}" RenderTransformOrigin="1.23,0.644">
             <Button.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="Lavender" Offset="1"/>
@@ -21,7 +21,7 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Clear" HorizontalAlignment="Left" Margin="396,387,0,0" FontSize="17" FontWeight="Bold" VerticalAlignment="Top" Width="76" Command="{Binding ClearCommand}" RenderTransformOrigin="1.23,0.644">
+        <Button Content="Clear" HorizontalAlignment="Left" Margin="204,387,0,0" FontSize="17" FontWeight="Bold" VerticalAlignment="Top" Width="76" Command="{Binding ClearCommand}" RenderTransformOrigin="1.23,0.644">
             <Button.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="Lavender" Offset="1"/>
