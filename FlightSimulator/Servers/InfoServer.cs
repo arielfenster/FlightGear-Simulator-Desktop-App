@@ -62,11 +62,18 @@ namespace FlightSimulator.Servers
         public string ReadFromSimulator()
         {
             string data = null;
-            char c = reader.ReadChar();
-            while (c != '\n' && c != '\0')
+            try
             {
-                data += c;
-                c = reader.ReadChar();
+                char c = reader.ReadChar();
+                while (c != '\n' && c != '\0')
+                {
+                    data += c;
+                    c = reader.ReadChar();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("{0}", e);
             }
             return data;
         }

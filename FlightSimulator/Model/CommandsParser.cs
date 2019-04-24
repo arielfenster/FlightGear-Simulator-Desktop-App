@@ -42,6 +42,8 @@ namespace FlightSimulator.Model
         /// <param name="line"="line"></param>
         public void AnalyzeAndSend(string line)
         {
+            if (this.server.GetClient() == null) return;
+
             StreamWriter st = new StreamWriter(this.server.GetClient().GetStream());
 
             string[] splitedLines = Parser(line);
