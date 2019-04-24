@@ -10,22 +10,30 @@ using FlightSimulator.Servers;
 
 namespace FlightSimulator.Model
 {
-    abstract class CommandsServerClientHandler : BaseNotify, IClientHandler
+    abstract class CommandsParser : BaseNotify
     {
+        private readonly CommandsServer server;
+
+        public CommandsParser(CommandsServer server)
+        {
+            this.server = server;
+        }
         ///<summary>
         /// The Reader will parse the command
         /// Manage the command in a Dictonary-will have or commands
         /// Will send the commands to the simulator
         /// </summary>
 
-        public string HandleClient(TcpClient client)
+        /*
+        public string handleclient(tcpclient client)
         {
-            NetworkStream ns = client.GetStream();
-            StreamWriter st = new StreamWriter(ns);
-            //st.Write(msg);
-            st.Flush();// very important
+            networkstream ns = client.getstream();
+            streamwriter st = new streamwriter(ns);
+            //st.write(msg);
+            st.flush();// very important
             return null;
         }
+        */
 
         /// <summary>
         /// Analize the string i get from the view
@@ -34,11 +42,15 @@ namespace FlightSimulator.Model
         /// <param name="line"="line"></param>
         public void AnalyzeAndSend(string line)
         {
+            StreamWriter st = new StreamWriter(this.server.GetClient().GetStream());
+
             string[] splitedLines = Parser(line);
             foreach(string splitLine in splitedLines)
             {
                 string command = splitLine;
                 command += "\r\n";
+                st.Write(command);
+                st.Flush();
                 
                 //m_clientChannel.WriteMsg(command);
                 //wait 2 sec between each command

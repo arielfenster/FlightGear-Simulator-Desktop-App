@@ -12,7 +12,7 @@ using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.Model
 {
-    class FlightBoardModel : InfoServerClientHandler
+    class FlightBoardModel : BaseNotify
     {
         private double lon;
         private double lat;
@@ -52,7 +52,7 @@ namespace FlightSimulator.Model
             }
         }
 
-        public void ConnectToServer(IServer server)
+        public void ConnectToServer(InfoServer server)
         {
             server.Connect(new ApplicationSettingsModel());
             string[] lonLatVals = { "", "" };
@@ -62,7 +62,7 @@ namespace FlightSimulator.Model
                 while (true)
                 {
                     // Receiving the raw data from the simulator
-                    string dataReceived = server.HandleCurrentClient();
+                    string dataReceived = server.ReadFromSimulator();
 
                     // Processing the received input to extract only the latitude and longitude values
                     this.RetrieveLonAndLat(ref dataReceived, lonLatVals);

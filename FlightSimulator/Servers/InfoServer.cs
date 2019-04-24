@@ -19,16 +19,14 @@ namespace FlightSimulator.Servers
     {
         private TcpListener server;
         private TcpClient client;
-        //private BinaryReader reader;
-        private IClientHandler ch;
+        private BinaryReader reader;
 
         //private readonly FlightBoardModel flightModel;
 
-        public InfoServer(IClientHandler ch)
+        public InfoServer()
         {
             this.server = null;
             this.client = null;
-            this.ch = ch;
         }
 
         /// <summary>
@@ -47,7 +45,7 @@ namespace FlightSimulator.Servers
                 Console.WriteLine("Waiting for connection...");
                 this.server.Start();
                 this.client = this.server.AcceptTcpClient();
-                //this.reader = new BinaryReader(this.client.GetStream());
+                this.reader = new BinaryReader(this.client.GetStream());
                 Console.WriteLine("Connected to Info server");
             }
 
@@ -61,17 +59,6 @@ namespace FlightSimulator.Servers
             }
         }
 
-        public string HandleCurrentClient()
-        {
-            return this.ch.HandleClient(this.client);
-        }
-
-        /*
-        public TcpClient GetClient()
-        {
-            return this.client;
-        }
-
         public string ReadFromSimulator()
         {
             string data = null;
@@ -83,7 +70,11 @@ namespace FlightSimulator.Servers
             }
             return data;
         }
-        */
+        
+        public TcpClient GetClient()
+        {
+            return this.client;
+        }
 
 
         /// <summary>
