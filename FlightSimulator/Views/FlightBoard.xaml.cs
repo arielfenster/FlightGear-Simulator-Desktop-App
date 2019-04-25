@@ -28,11 +28,12 @@ namespace FlightSimulator.Views
     public partial class FlightBoard : UserControl
     {
         ObservableDataSource<Point> planeLocations = null;
-        
+        private FlightBoardViewModel vm;
+
         public FlightBoard()
         {
             InitializeComponent();
-            FlightBoardViewModel vm = new FlightBoardViewModel(new FlightBoardModel());
+            vm = new FlightBoardViewModel(new FlightBoardModel());
             vm.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e) { Vm_PropertyChanged(sender, e); };
             DataContext = vm;
         }
@@ -48,9 +49,9 @@ namespace FlightSimulator.Views
 
         private void Vm_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if(e.PropertyName.Equals("VM_Lat") || e.PropertyName.Equals("VM_Lon"))
+            if (e.PropertyName.Equals("VM_Lat") || e.PropertyName.Equals("VM_Lon"))
             {
-                FlightBoardViewModel vm = sender as FlightBoardViewModel;
+                // Create a point based on the values received from the simulator and draw it on the path board
                 Point p = new Point(vm.VM_Lat, vm.VM_Lon);
                 planeLocations.AppendAsync(Dispatcher, p);
             }

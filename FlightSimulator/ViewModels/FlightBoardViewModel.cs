@@ -15,48 +15,43 @@ namespace FlightSimulator.ViewModels
 {
     internal class FlightBoardViewModel : BaseNotify
     {
-        private readonly FlightBoardModel model;
+        private FlightBoardModel model;
 
         public FlightBoardViewModel(FlightBoardModel model)
         {
             this.model = model;
             this.model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
             {
-                this.NotifyPropertyChanged("VM_" + e.PropertyName);
+                
+                this.NotifyPropertyChanged("VM_"+e.PropertyName);
             };
         }
 
+        private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+       
         public float VM_Lon
         {
-            get { return this.model.Lon; }
-        }
-
-        public float VM_Lat
-        {
-            get { return this.model.Lat; }
-        }
-        
-        /*
-        public float VM_Lon
-        {
-            get { return model.lon; }
+            get { return model.Lon; }
             set
             {
-                this.lon = value;
+                this.VM_Lon = value;
                 this.NotifyPropertyChanged("Lon");
             }
         }
 
         public float VM_Lat
         {
-            get { return this.lat; }
+            get { return model.Lat; }
             set
             {
-                this.lat = value;
+                this.VM_Lat = value;
                 this.NotifyPropertyChanged("Lat");
             }
         }
-        */
+        
         #region Commands
         #region SettingsCommand
         private ICommand _settingsCommand;

@@ -12,8 +12,8 @@ namespace FlightSimulator.Servers
     {
         public void CreateConnections()
         {
-            //FlightBoardModel flightModel = new FlightBoardModel();
-            //flightModel.ConnectToServer(new InfoServer());
+            FlightBoardModel flightModel = new FlightBoardModel();
+            flightModel.ConnectToServer(InfoServer.Instance);
 
             CommandsServer commands = CommandsServer.Instance;
             commands.Connect(ApplicationSettingsModel.Instance);
