@@ -13,13 +13,8 @@ namespace FlightSimulator.Servers
 {
     public class CommandsServer : IServer
     {
-     //   private int port;
-     //   private string ip;
         private IPEndPoint endPoint;
         private TcpClient tcpClient;
-
-
-
 
         #region Singelton
         private static CommandsServer m_instance;
@@ -45,7 +40,6 @@ namespace FlightSimulator.Servers
         // Connect method:
         // First i get the ip address
         // After this i connect by TCP protocol
-
         public void Connect(ISettingsModel settings)
         {
             IPAddress ipAddress = IPAddress.Parse(settings.FlightServerIP);
@@ -54,6 +48,7 @@ namespace FlightSimulator.Servers
             this.tcpClient.Connect(endPoint);
             Console.WriteLine("Connected to Commands server");
         }
+
         //Dissconnect as TCP client
         public void Close()
         {
@@ -64,22 +59,5 @@ namespace FlightSimulator.Servers
         {
             return this.tcpClient;
         }
-
-
-
-        /*
-        // Write the massage to the simulator
-        // Use StreamWrite to write the simuletur
-        public void WriteMsg(string msg)
-        {
-            if (tcpClient != null)
-            {
-                NetworkStream ns = tcpClient.GetStream();
-                StreamWriter st = new StreamWriter(ns);
-                st.Write(msg);
-                st.Flush();// very important
-            }
-        }
-        */
     }
 }

@@ -93,12 +93,9 @@
     <Compile Include="Model\CommandsParser.cs" />
     <Compile Include="Model\EventArgs\VirtualJoystickEventArgs.cs" />
     <Compile Include="Model\FlightBoardModel.cs" />
-    <Compile Include="Model\InfoServerClientHandler.cs" />
     <Compile Include="Model\Interface\ISettingsModel.cs" />
     <Compile Include="Model\ManualControlModel.cs" />
     <Compile Include="Servers\CommandsServer.cs" />
-    <Compile Include="Servers\ConnectionsManager.cs" />
-    <Compile Include="Servers\IClientHandler.cs" />
     <Compile Include="Servers\InfoServer.cs" />
     <Compile Include="Servers\IServer.cs" />
     <Compile Include="ViewModels\BaseNotify.cs" />

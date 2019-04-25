@@ -34,7 +34,8 @@ namespace FlightSimulator.Views
         {
             InitializeComponent();
             vm = new FlightBoardViewModel(new FlightBoardModel());
-            vm.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e) { Vm_PropertyChanged(sender, e); };
+            // When one of the view model's properties have changed, it will executed the bottom function to display the new coordinates
+            vm.PropertyChanged += (sender, args) => { Vm_PropertyChanged(sender, args); };
             DataContext = vm;
         }
 
@@ -49,7 +50,7 @@ namespace FlightSimulator.Views
 
         private void Vm_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals("VM_Lat") || e.PropertyName.Equals("VM_Lon"))
+            if(e.PropertyName.Equals("VM_Lat") || e.PropertyName.Equals("VM_Lon"))
             {
                 // Create a point based on the values received from the simulator and draw it on the path board
                 Point p = new Point(vm.VM_Lat, vm.VM_Lon);

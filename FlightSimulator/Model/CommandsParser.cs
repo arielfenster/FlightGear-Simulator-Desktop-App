@@ -32,17 +32,7 @@ namespace FlightSimulator.Model
         /// Will send the commands to the simulator
         /// </summary>
 
-        /*
-        public string handleclient(tcpclient client)
-        {
-            networkstream ns = client.getstream();
-            streamwriter st = new streamwriter(ns);
-            //st.write(msg);
-            st.flush();// very important
-            return null;
-        }
-        */
-
+        
         /// <summary>
         /// Analize the string i get from the view
         /// Send in throw client chanel to the simuletor

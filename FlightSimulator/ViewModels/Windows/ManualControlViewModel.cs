@@ -10,18 +10,16 @@ namespace FlightSimulator.ViewModels
 {
     class ManualControlViewModel : BaseNotify 
     {
-        //private readonly CommandsServerClientHandler reader;
         private readonly ManualControlModel model;
 
         public ManualControlViewModel(ManualControlModel model)
         {
-            //this.reader = new CommandsServerClientHandler(CommandsServer.Instance);
             this.model = model;
         }
 
-        /// <commands>
-        /// Set the value you get from the joy-stick to the simulator adress
-        /// <commands>        
+        /// <summary>
+        /// Set the value you get from the joy-stick to the simulator address
+        /// </summary>
         public float ThrottleChange
         {
             set
@@ -30,9 +28,9 @@ namespace FlightSimulator.ViewModels
             }
         }
 
-        /// <commands>
+        /// <summary>
         /// Set the value you get from the joy-stick to the simulator address
-        /// <commands>
+        /// </summary>
         public float RudderChanged
         {
             set
@@ -40,9 +38,10 @@ namespace FlightSimulator.ViewModels
                 this.model.SendCommand("rudder", value);
             }
         }
-        /// <commands>
+
+        /// <summary>
         /// Set the value you get from the joy-stick to the simulator address
-        /// <commands>
+        /// </summary>
         public float ElevetorCommand
         {
             set
@@ -50,9 +49,10 @@ namespace FlightSimulator.ViewModels
                 this.model.SendCommand("elevator", value);
             }
         }
-        /// <commands
+
+        /// <summary>
         /// Set the value you get from the joy-stick to the simulator address
-        /// <commands>
+        /// </summary>
         public float AilronCommand
         {
             set
