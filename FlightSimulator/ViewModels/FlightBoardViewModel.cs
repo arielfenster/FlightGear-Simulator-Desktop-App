@@ -15,15 +15,12 @@ namespace FlightSimulator.ViewModels
 {
     internal class FlightBoardViewModel : BaseNotify
     {
-        private readonly FlightBoardModel model;
+        private FlightBoardModel model;
 
         public FlightBoardViewModel(FlightBoardModel model)
         {
             this.model = model;
-            this.model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
-            {
-                this.NotifyPropertyChanged("VM_" + e.PropertyName);
-            };
+            this.model.PropertyChanged += (sender, args) => NotifyPropertyChanged("VM_" + args.PropertyName);
         }
 
         public float VM_Lon
@@ -35,28 +32,7 @@ namespace FlightSimulator.ViewModels
         {
             get { return this.model.Lat; }
         }
-        
-        /*
-        public float VM_Lon
-        {
-            get { return model.lon; }
-            set
-            {
-                this.lon = value;
-                this.NotifyPropertyChanged("Lon");
-            }
-        }
 
-        public float VM_Lat
-        {
-            get { return this.lat; }
-            set
-            {
-                this.lat = value;
-                this.NotifyPropertyChanged("Lat");
-            }
-        }
-        */
         #region Commands
         #region SettingsCommand
         private ICommand _settingsCommand;
@@ -85,14 +61,34 @@ namespace FlightSimulator.ViewModels
         }
         private void OnConnect()
         {
-            ConnectionsManager connections = new ConnectionsManager();
-            connections.CreateConnections();
+            this.model.ConnectToServer(InfoServer.Instance);
+            CommandsServer commands = CommandsServer.Instance;
+            commands.Connect(ApplicationSettingsModel.Instance);
+        }
+        #endregion
 
-            //this.model.ConnectToServer(new InfoServer());
-
-            //ISettingsModel settings = ApplicationSettingsModel.Instance;
-            //IServer commandsServ = CommandsServer.Instance;
-            //commandsServ.Connect(settings);
+        #region DisconnectCommand
+        private ICommand _disconnectCommand;
+        public ICommand DisconnectCommand
+        {
+            get
+            {
+                return _disconnectCommand ?? (_disconnectCommand = new CommandHandler(() => this.OnDisconnect()));
+            }
+        }
+        private void OnDisconnect()
+        {
+            try
+            {
+                this.model.Stop();
+                InfoServer.Instance.Close();
+                CommandsServer.Instance.Close();
+                Console.WriteLine("Disconnected");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error during closing connections: {0}", e);
+            }
         }
         #endregion
         #endregion

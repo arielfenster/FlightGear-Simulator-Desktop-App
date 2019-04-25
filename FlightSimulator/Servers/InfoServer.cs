@@ -21,8 +21,6 @@ namespace FlightSimulator.Servers
         private TcpClient client;
         private StreamReader reader;
 
-        //private readonly FlightBoardModel flightModel;
-
         #region Singleton
         private static InfoServer m_instance;
         public static InfoServer Instance
@@ -49,7 +47,6 @@ namespace FlightSimulator.Servers
         /// <param name="settings"> Holds the IP and port of the requested connection. </param>
         public void Connect(ISettingsModel settings)
         {
-            //Thread thread = new Thread(delegate () { this.flightModel.ReadDataFromClient(client);});
             try
             {
                 string ip = settings.FlightServerIP;
@@ -98,45 +95,9 @@ namespace FlightSimulator.Servers
         /// </summary>
         public void Close()
         {
-            //this.shouldStop = true;
-            //this.thread.Abort();
+            this.reader.Close();
             this.client.Close();
             this.server.Stop();
         }
     }
 }
-
-
-/*
- * this.thread = new Thread(delegate ()
-                {
-                    // Used to read the input from the flight simulator
-                    Byte[] bytes = new byte[256];
-                    NetworkStream stream = client.GetStream();
-                    BinaryReader reader = new BinaryReader(stream);
-
-                    while (!this.shouldStop)
-                    {
-                        string dataReceived = this.ReadFromSimulator(client);
-
-
-
-//                        string dataReceived = System.Text.Encoding.ASCII.GetString(bytes, 0, bytesRead);
-                        string[] lonLatVals = { "", "" };
-
-                        // Processing the received input to extract only the latitude and longitude values
-                        this.RetrieveLonAndLat(ref dataReceived, lonLatVals);
-
-                        // Send the new values to the flight board view model to display them
-                        if (lonLatVals[(int)Values.Lon] != "")
-                        {
-                            this.flightModel.Lon = Double.Parse(lonLatVals[(int)Values.Lon]);
-                        }
-                        if (lonLatVals[(int)Values.Lat] != "")
-                        {
-                            this.flightModel.Lat = Double.Parse(lonLatVals[(int)Values.Lat]);
-                        }
-                    }
-                });
-                thread.Start();
-*/

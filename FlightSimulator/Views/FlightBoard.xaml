@@ -9,8 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <Style TargetType="Button">
-            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontSize" Value="10"/>
             <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Height" Value="20"/>
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush>
@@ -58,8 +59,9 @@
 
         <Viewbox Grid.Row="0" Grid.Column="0">
             <Grid>
-                <Button Name="Connect" Content="Connect" Command="{Binding ConnectCommand}" Margin="100,10,200,10" />
-                <Button Name="Settings" Content="Settings" Command="{Binding SettingsCommand}" Margin="200,10,100,10" />
+                <Button Name="btnConnect" Content="Connect" Command="{Binding ConnectCommand}" HorizontalAlignment="Left" Margin="50,10,200,10" />
+                <Button Name="btnSettings" Content="Settings" Command="{Binding SettingsCommand}" HorizontalAlignment="Center" Margin="100,10,100,10" />
+                <Button Name="btnDisconnect" Content="Disconnect" Command="{Binding DisconnectCommand}" HorizontalAlignment="Right" Margin="0,10,30,10"/>
             </Grid>
         </Viewbox>
     </Grid>

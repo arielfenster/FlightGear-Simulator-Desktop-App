@@ -11,16 +11,9 @@ namespace FlightSimulator.ViewModels.Windows
 {
     class AutoControlViewModel : BaseNotify
     {
-        /// <summary>
-        /// Icommand - contract for commands that are written in view
-        /// m_OkCommad- Icommand member for the "ok" command
-        /// m_ClearCommand- Icommand member for the "clear" command
-        /// 
-        /// </summary>
         private string line;
         private ICommand m_OkCommand;
         private ICommand m_ClearCommand;
-        //private CommandsServerClientHandler m_reader;
         private readonly AutoControlModel model;
         private bool okClicked = false;
 
@@ -28,7 +21,6 @@ namespace FlightSimulator.ViewModels.Windows
         {
             this.line = "";
             this.model = model;
-            //this.m_reader = new CommandsServerClientHandler(CommandsServer.Instance);
         }
 
         /// <summary>
@@ -81,8 +73,6 @@ namespace FlightSimulator.ViewModels.Windows
         }
         public void OkClick()
         {
-
-            //m_reader.AnalyzeAndSend(line);
             this.model.SendCommands(line);
             okClicked = true;
             NotifyPropertyChanged("BackGroundColor");

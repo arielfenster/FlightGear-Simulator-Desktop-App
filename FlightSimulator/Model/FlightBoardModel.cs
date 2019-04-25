@@ -17,37 +17,31 @@ namespace FlightSimulator.Model
         private float lon;
         private float lat;
         private enum Values { Lon = 0, Lat };
+        private bool shouldStop;
+        private Thread thread;
 
-        #region Singleton
-        private static FlightBoardModel m_instance;
-        public static FlightBoardModel Instance
+        public FlightBoardModel()
         {
-            get
-            {
-                if (m_instance == null)
-                {
-                    m_instance = new FlightBoardModel();
-                }
-                return m_instance;
-            }
+            this.shouldStop = false;
+            this.thread = null;
         }
-        #endregion
+
         public float Lon
         {
-            get { return this.lon; }
+            get { return lon; }
             private set
             {
-                this.lon = value;
-                this.NotifyPropertyChanged("Lon");
+                lon = value;
+                NotifyPropertyChanged("Lon");
             }
         }
         public float Lat
         {
-            get { return this.lat; }
+            get { return lat; }
             private set
             {
-                this.lat = value;
-                this.NotifyPropertyChanged("Lat");
+                lat = value;
+                NotifyPropertyChanged("Lat");
             }
         }
 
@@ -56,9 +50,9 @@ namespace FlightSimulator.Model
             server.Connect(new ApplicationSettingsModel());
             string[] lonLatVals = { "", "" };
 
-            Thread thread = new Thread(() =>
+            thread = new Thread(() =>
             {
-                while (true)
+                while (!shouldStop)
                 {
                     // Receiving the raw data from the simulator
                     string dataReceived = server.ReadFromSimulator();
@@ -66,7 +60,6 @@ namespace FlightSimulator.Model
 
                     // Processing the received input to extract only the latitude and longitude values
                     this.RetrieveLonAndLat(ref dataReceived, lonLatVals);
-
                     // Send the new values to the flight board view model to display them
                     if (lonLatVals[(int)Values.Lon] != "")
                     {
@@ -76,6 +69,10 @@ namespace FlightSimulator.Model
                     {
                         this.Lat = float.Parse(lonLatVals[(int)Values.Lat]);
                     }
+                }
+                if (shouldStop)
+                {
+                    thread.Abort();
                 }
             });
             thread.Start();
@@ -93,6 +90,11 @@ namespace FlightSimulator.Model
             string[] tokens = data.Split(delimiter);
             details[(int)Values.Lat] = tokens[(int)Values.Lat];
             details[(int)Values.Lon] = tokens[(int)Values.Lon];
+        }
+
+        public void Stop()
+        {
+            shouldStop = true;
         }
     }
 }
