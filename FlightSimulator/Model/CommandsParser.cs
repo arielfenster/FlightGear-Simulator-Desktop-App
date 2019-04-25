@@ -10,10 +10,18 @@ using FlightSimulator.Servers;
 
 namespace FlightSimulator.Model
 {
+    /// <summary>
+    /// The class's purpose is to combine similar code and logic between its deriving classes, namely ManualControlModel and AutoControlModel.
+    /// Both of these classes have similar functionality with minor differences between them.
+    /// </summary>
     abstract class CommandsParser : BaseNotify
     {
         private readonly CommandsServer server;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="server"> The server to which the commands are sent </param>
         public CommandsParser(CommandsServer server)
         {
             this.server = server;

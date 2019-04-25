@@ -19,15 +19,29 @@ namespace FlightSimulator.Servers
     {
         private TcpListener server;
         private TcpClient client;
-        private BinaryReader reader;
+        private StreamReader reader;
 
         //private readonly FlightBoardModel flightModel;
 
-        public InfoServer()
+        #region Singleton
+        private static InfoServer m_instance;
+        public static InfoServer Instance
+        {
+            get
+            {
+                if (m_instance == null)
+                {
+                    m_instance = new InfoServer();
+                }
+                return m_instance;
+            }
+        }
+        private InfoServer()
         {
             this.server = null;
             this.client = null;
         }
+        #endregion
 
         /// <summary>
         /// Establish a connection to a specific socket
@@ -45,7 +59,7 @@ namespace FlightSimulator.Servers
                 Console.WriteLine("Waiting for connection...");
                 this.server.Start();
                 this.client = this.server.AcceptTcpClient();
-                this.reader = new BinaryReader(this.client.GetStream());
+                this.reader = new StreamReader(this.client.GetStream());
                 Console.WriteLine("Connected to Info server");
             }
 
@@ -62,19 +76,17 @@ namespace FlightSimulator.Servers
         public string ReadFromSimulator()
         {
             string data = null;
-            try
+            using (this.reader)
             {
-                char c = reader.ReadChar();
-                while (c != '\n' && c != '\0')
+                try
                 {
-                    data += c;
-                    c = reader.ReadChar();
+                    data = reader.ReadLine();
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("{0}", e);
-            }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0}", e);
+                }
+            }   
             return data;
         }
         
