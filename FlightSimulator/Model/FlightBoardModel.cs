@@ -14,8 +14,8 @@ namespace FlightSimulator.Model
 {
     class FlightBoardModel : BaseNotify
     {
-        private double lon;
-        private double lat;
+        private float lon;
+        private float lat;
         private enum Values { Lon = 0, Lat };
 
         #region Singleton
@@ -32,20 +32,19 @@ namespace FlightSimulator.Model
             }
         }
         #endregion
-        public double Lon
+        public float Lon
         {
             get { return this.lon; }
-            set
+            private set
             {
                 this.lon = value;
                 this.NotifyPropertyChanged("Lon");
             }
         }
-
-        public double Lat
+        public float Lat
         {
             get { return this.lat; }
-            set
+            private set
             {
                 this.lat = value;
                 this.NotifyPropertyChanged("Lat");
@@ -63,6 +62,7 @@ namespace FlightSimulator.Model
                 {
                     // Receiving the raw data from the simulator
                     string dataReceived = server.ReadFromSimulator();
+                    if (dataReceived == null) continue;
 
                     // Processing the received input to extract only the latitude and longitude values
                     this.RetrieveLonAndLat(ref dataReceived, lonLatVals);
@@ -70,11 +70,11 @@ namespace FlightSimulator.Model
                     // Send the new values to the flight board view model to display them
                     if (lonLatVals[(int)Values.Lon] != "")
                     {
-                        this.Lon = Double.Parse(lonLatVals[(int)Values.Lon]);
+                        this.Lon = float.Parse(lonLatVals[(int)Values.Lon]);
                     }
                     if (lonLatVals[(int)Values.Lat] != "")
                     {
-                        this.Lat = Double.Parse(lonLatVals[(int)Values.Lat]);
+                        this.Lat = float.Parse(lonLatVals[(int)Values.Lat]);
                     }
                 }
             });

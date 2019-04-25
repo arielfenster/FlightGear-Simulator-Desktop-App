@@ -33,7 +33,7 @@ namespace FlightSimulator.Views
         {
             InitializeComponent();
             FlightBoardViewModel vm = new FlightBoardViewModel(new FlightBoardModel());
-            vm.PropertyChanged += Vm_PropertyChanged;
+            vm.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e) { Vm_PropertyChanged(sender, e); };
             DataContext = vm;
         }
 
@@ -48,7 +48,7 @@ namespace FlightSimulator.Views
 
         private void Vm_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if(e.PropertyName.Equals("Lat") || e.PropertyName.Equals("Lon"))
+            if(e.PropertyName.Equals("VM_Lat") || e.PropertyName.Equals("VM_Lon"))
             {
                 FlightBoardViewModel vm = sender as FlightBoardViewModel;
                 Point p = new Point(vm.VM_Lat, vm.VM_Lon);

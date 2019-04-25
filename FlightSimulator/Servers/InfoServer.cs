@@ -76,17 +76,14 @@ namespace FlightSimulator.Servers
         public string ReadFromSimulator()
         {
             string data = null;
-            using (this.reader)
+            try
             {
-                try
-                {
-                    data = reader.ReadLine();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("{0}", e);
-                }
-            }   
+                data = reader.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("{0}", e);
+            }
             return data;
         }
         

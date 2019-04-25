@@ -26,18 +26,18 @@ namespace FlightSimulator.ViewModels
             };
         }
 
-        public double VM_Lon
+        public float VM_Lon
         {
             get { return this.model.Lon; }
         }
 
-        public double VM_Lat
+        public float VM_Lat
         {
             get { return this.model.Lat; }
         }
         
         /*
-        public double VM_Lon
+        public float VM_Lon
         {
             get { return model.lon; }
             set
@@ -47,7 +47,7 @@ namespace FlightSimulator.ViewModels
             }
         }
 
-        public double VM_Lat
+        public float VM_Lat
         {
             get { return this.lat; }
             set
