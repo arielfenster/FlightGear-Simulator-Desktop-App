@@ -18,6 +18,9 @@ namespace FlightSimulator.Servers
         private IPEndPoint endPoint;
         private TcpClient tcpClient;
 
+
+
+
         #region Singelton
         private static CommandsServer m_instance;
         public static CommandsServer Instance

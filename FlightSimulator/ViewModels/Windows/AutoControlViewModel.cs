@@ -40,7 +40,7 @@ namespace FlightSimulator.ViewModels.Windows
             {
                 if (line != "" && !okClicked)
                 {
-                    return ("RED");
+                    return ("Pink");
                 }
                 else
                 {

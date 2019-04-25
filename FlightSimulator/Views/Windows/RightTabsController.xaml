@@ -4,15 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FlightSimulator.Views.Windows"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <TabControl HorizontalAlignment="Left" Height="500" Margin="10,10,0,0" VerticalAlignment="Top" Width="776">
+             mc:Ignorable="d" Height="502.5" Width="789">
+    <Grid Margin="0,0,271.667,9.333">
+        <TabControl HorizontalAlignment="Left" Height="509" Margin="10,10,0,-25.666" VerticalAlignment="Top" Width="503">
             <TabItem Header="Manual">
-                <local:ManualControl x:Name="manualControl"></local:ManualControl>
+                <local:ManualControl x:Name="manualControl" Margin="-64,-27,-118,-14" VerticalAlignment="Top" Height="522" Loaded="ManualControl_Loaded"></local:ManualControl>
             </TabItem>
             <TabItem Header="Auto">
-                <local:AutoControl x:Name="autoControl"></local:AutoControl>
+                <local:AutoControl x:Name="autoControl" Margin="10,0,-149,0" Loaded="AutoControl_Loaded"></local:AutoControl>
             </TabItem>
         </TabControl>
     </Grid>

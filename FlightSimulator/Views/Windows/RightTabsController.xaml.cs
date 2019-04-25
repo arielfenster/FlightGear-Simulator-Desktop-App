@@ -27,5 +27,15 @@ namespace FlightSimulator.Views.Windows
         {
             InitializeComponent();
         }
+
+        private void ManualControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AutoControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
