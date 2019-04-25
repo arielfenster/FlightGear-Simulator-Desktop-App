@@ -66,7 +66,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="AilronVal" Content="{Binding ElementName=joystick,Path=Aileron,StringFormat=N2}" HorizontalAlignment="Right" Margin="0,2,-10,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Column="3">
+        <Label x:Name="AilronVal" Content="{Binding ElementName=joystick,Path=Aileron,StringFormat=N2}" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Column="3">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -76,7 +76,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label Name="rudderValue"  Content="{Binding ElementName=rudderSl,Path=Value,StringFormat=N2}" HorizontalAlignment="Left" Margin="199.667,398,-35,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.991,0.158" Grid.Column="3">
+        <Label Name="rudderValue"  Content="{Binding ElementName=rudderSl,Path=Value,StringFormat=N2}" HorizontalAlignment="Left" Margin="174.667,398,-10,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.991,0.158" Grid.Column="3">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

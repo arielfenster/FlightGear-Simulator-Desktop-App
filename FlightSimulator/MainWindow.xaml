@@ -18,7 +18,7 @@
                 </TransformGroup>
             </Views:FlightBoard.RenderTransform>
         </Views:FlightBoard>
-        <Windows:RightTabsController HorizontalAlignment="Left" Height="496" VerticalAlignment="Top" Width="770" Margin="422,29,-235,0"/>
+        <Windows:RightTabsController HorizontalAlignment="Left" Height="514" VerticalAlignment="Top" Width="770" Margin="416,35,-229,0"/>
     </Grid>
 </Window>
     

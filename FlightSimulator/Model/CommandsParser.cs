@@ -26,11 +26,6 @@ namespace FlightSimulator.Model
         {
             this.server = server;
         }
-        ///<summary>
-        /// The Reader will parse the command
-        /// Manage the command in a Dictonary-will have or commands
-        /// Will send the commands to the simulator
-        /// </summary>
 
         
         /// <summary>
@@ -51,11 +46,6 @@ namespace FlightSimulator.Model
                 command += "\r\n";
                 st.Write(command);
                 st.Flush();
-                
-                //m_clientChannel.WriteMsg(command);
-                //wait 2 sec between each command
-                //Thread.Sleep(2000);
-
             }
         }
 

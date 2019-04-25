@@ -10,6 +10,12 @@ using System.Net.Sockets;
 
 namespace FlightSimulator.Model
 {
+    /// <summary>
+    /// The class's purpose is to send, commands to simulator after analyzing(parse them)
+    /// Have 2 sec break between each command
+    ///
+    /// </summary>
+
     class AutoControlModel : CommandsParser
     {
         public AutoControlModel(CommandsServer server) : base(server) { }
