@@ -18,8 +18,16 @@ namespace FlightSimulator.Model
 
     class AutoControlModel : CommandsParser
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="server"> The server to which the commands will be sent </param>
         public AutoControlModel(CommandsServer server) : base(server) { }
 
+        /// <summary>
+        /// Parsing the manual commands and sending them to the simulator in intervals of 2 seconds each
+        /// </summary>
+        /// <param name="commands"> Long text of commands </param>
         public void SendCommands(string commands)
         {
             // Split the text into commands split by \r\n, then send each command to the simulator in intervals of 2 seconds between each command

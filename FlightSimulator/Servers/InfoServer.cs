@@ -42,7 +42,7 @@ namespace FlightSimulator.Servers
         #endregion
 
         /// <summary>
-        /// Establish a connection to a specific socket
+        /// Establish a connection to a specific socket.
         /// </summary>
         /// <param name="settings"> Holds the IP and port of the requested connection. </param>
         public void Connect(ISettingsModel settings)
@@ -69,26 +69,15 @@ namespace FlightSimulator.Servers
                 Console.WriteLine("Exception: {0}", f);
             }
         }
-
-        public string ReadFromSimulator()
-        {
-            string data = null;
-            try
-            {
-                data = reader.ReadLine();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("{0}", e);
-            }
-            return data;
-        }
         
+        /// <summary>
+        /// Returns the current client connect.
+        /// </summary>
+        /// <returns> Current client connected </returns>
         public TcpClient GetClient()
         {
             return this.client;
         }
-
 
         /// <summary>
         /// Close the connection to the socket.

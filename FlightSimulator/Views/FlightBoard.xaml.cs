@@ -34,7 +34,7 @@ namespace FlightSimulator.Views
         {
             InitializeComponent();
             vm = new FlightBoardViewModel(new FlightBoardModel());
-            // When one of the view model's properties have changed, it will executed the bottom function to display the new coordinates
+            // When one of the view-model's properties have changed, it will execute the bottom function to display the new coordinates
             vm.PropertyChanged += (sender, args) => { Vm_PropertyChanged(sender, args); };
             DataContext = vm;
         }
