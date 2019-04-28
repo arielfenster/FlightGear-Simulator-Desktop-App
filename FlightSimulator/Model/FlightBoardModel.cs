@@ -21,7 +21,6 @@ namespace FlightSimulator.Model
         private float lat;
         private enum Values { Lon = 0, Lat };
         private bool shouldStop;
-        private Thread thread;
 
         /// <summary>
         /// Constructor
@@ -29,7 +28,6 @@ namespace FlightSimulator.Model
         public FlightBoardModel()
         {
             this.shouldStop = false;
-            this.thread = null;
         }
 
         /// <summary>
@@ -69,6 +67,9 @@ namespace FlightSimulator.Model
 
             string[] lonLatVals = { "", "" };
             StreamReader reader = new StreamReader(server.GetClient().GetStream());
+
+            shouldStop = false;
+            Thread thread = null;
             thread = new Thread(() =>
             {
                 while (!shouldStop)

@@ -60,7 +60,7 @@ namespace FlightSimulator.ViewModels
         /// <summary>
         /// Set the value you get from the joy-stick to the simulator address
         /// </summary>
-        public float AilronCommand
+        public float AileronCommand
         {
             set
             {
