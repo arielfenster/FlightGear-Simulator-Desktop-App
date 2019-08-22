@@ -46,9 +46,8 @@ The aircraft can be controlled using either a joystick (manual) or a stream of c
 
 #### Manual control
 The joystick is used to navigate the aircraft. Shifting the nob changes the values presented in the display and sends them to the simulator. 
-```
-note: need to add pictures
-```
+
+@@@ NEED TO ADD PICTURES
 
 #### Auto control
 Click on the 'Auto' tab to switch to the auto control. Here you write commands in a specific format the simulator can read and apply:
