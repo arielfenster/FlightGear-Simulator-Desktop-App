@@ -1,5 +1,6 @@
-# FlightGear-Simulator-Desktop-App
-A desktop application for the FlightGear flight simulator, used to fly the aircraft using either a joystick or a stream of commands.
+# FlightGear Simulator Desktop Application
+A desktop application for the FlightGear flight simulator, used to fly the aircraft using either a joystick or a stream of commands. <br/>
+Implmented using WPF technology and MVVM architecture.
 
 ### Installing 
 * Download and install the simulator on your computer- https://www.flightgear.org/download/
