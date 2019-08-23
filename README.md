@@ -38,7 +38,7 @@ The first order of business is to set up the connection settings to the simulato
 
 ![connection settings](https://user-images.githubusercontent.com/45856261/63500659-f0953f80-c4d2-11e9-8ba4-46b8bb466c21.PNG)
 
-Here you config the settings to connect to the simulator. The default settings will appear. You can change these settings to your liking; notice how the 'Info' port number corresponds to the 'out' socket and the 'Commands' port corresponds to the 'in' socket from above. Click OK to confirm your settings.
+Here you config the settings to connect to the simulator. The default settings will appear. You can change these settings to your liking; notice how the 'Info' port number corresponds to the 'out' socket and the 'Commands' port corresponds to the 'in' socket from above. The IP corresponds to your own computer when you installed the simulator. Click OK to confirm your settings.
 Next, run the simulator, click on the 'Fly!' icon in the bottom left corner and click on the 'Connect' button in the application to start the connection to the simulator.
 
 ### Controlling the aircraft
