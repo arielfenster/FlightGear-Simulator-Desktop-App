@@ -9,6 +9,9 @@ using System.Windows.Input;
 
 namespace FlightSimulator.ViewModels.Windows
 {
+    /// <summary>
+    /// The class receives commands from the view object and sends them to the analyzing model object.
+    /// </summary>
     class AutoControlViewModel : BaseNotify
     {
         private string line;
@@ -17,6 +20,10 @@ namespace FlightSimulator.ViewModels.Windows
         private readonly AutoControlModel model;
         private bool okClicked = false;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="model"> Responsible for analyzing the received commands </param>
         public AutoControlViewModel(AutoControlModel model)
         {
             this.line = "";
@@ -71,6 +78,10 @@ namespace FlightSimulator.ViewModels.Windows
                 return this.m_OkCommand ?? (m_OkCommand = new CommandHandler(() => OkClick()));
             }
         }
+
+        /// <summary>
+        /// Execute all the commands in the command box and change the color of the box accordingly.
+        /// </summary>
         public void OkClick()
         {
             this.model.SendCommands(line);

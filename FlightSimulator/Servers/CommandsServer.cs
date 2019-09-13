@@ -11,6 +11,9 @@ using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.Servers
 {
+    /// <summary>
+    /// A server object that connects the control models as clients to the flight simulator.
+    /// </summary>
     public class CommandsServer : IServer
     {
         private IPEndPoint endPoint;
@@ -55,6 +58,10 @@ namespace FlightSimulator.Servers
             tcpClient.Close();
         }
 
+        /// <summary>
+        /// Returns the current client connect.
+        /// </summary>
+        /// <returns> Current client connected </returns>
         public TcpClient GetClient()
         {
             return this.tcpClient;

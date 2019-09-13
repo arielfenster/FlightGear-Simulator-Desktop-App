@@ -8,10 +8,17 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.ViewModels
 {
+    /// <summary>
+    /// The class receives commands from the view object and sends them to the analyzing model object.
+    /// </summary>
     class ManualControlViewModel : BaseNotify 
     {
         private readonly ManualControlModel model;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="model"> Responsible for analyzing the received commands </param>
         public ManualControlViewModel(ManualControlModel model)
         {
             this.model = model;
@@ -53,7 +60,7 @@ namespace FlightSimulator.ViewModels
         /// <summary>
         /// Set the value you get from the joy-stick to the simulator address
         /// </summary>
-        public float AilronCommand
+        public float AileronCommand
         {
             set
             {

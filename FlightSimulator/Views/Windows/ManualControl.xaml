@@ -25,7 +25,7 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <Label Content="&#x2190; ailron &#x2192;" HorizontalAlignment="Left" Margin="230,10,0,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" Grid.ColumnSpan="4"/>
+        <Label Content="&#x2190; aileron &#x2192;" HorizontalAlignment="Left" Margin="230,10,0,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" Grid.ColumnSpan="4"/>
         <Label Content="&#x2190; throttle &#x2192;" HorizontalAlignment="Left" Margin="-59,211,0,0" VerticalAlignment="Top" Height="53" Width="154" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
@@ -66,7 +66,7 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <Label x:Name="AilronVal" Content="{Binding ElementName=joystick,Path=Aileron,StringFormat=N2}" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Column="3">
+        <Label x:Name="AileronVal" Content="{Binding ElementName=joystick,Path=Aileron,StringFormat=N2}" HorizontalAlignment="Right" Margin="0,3,0,0" VerticalAlignment="Top" Height="53" Width="95" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Grid.Column="3">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -97,7 +97,7 @@
             </Label.RenderTransform>
         </Label>
         <Views:Joystick x:Name="joystick"
-                                    Aileron="{Binding AilronCommand,Mode=OneWayToSource}"
+                                    Aileron="{Binding AileronCommand,Mode=OneWayToSource}"
                                     Elevator="{Binding ElevetorCommand, Mode=OneWayToSource}"
                                     HorizontalAlignment="Left" Height="323" Margin="105,63,0,0" 
                                     VerticalAlignment="Top" Width="361" RenderTransformOrigin="0.5,0.5" 
